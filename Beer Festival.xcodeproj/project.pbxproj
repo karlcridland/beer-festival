@@ -30,6 +30,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6D4C17932E3B9F6800723EE3 /* Exceptions for "Beer Festival" folder in "Beer FestivalTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/Festival/Festival.swift,
+				Models/Stamps/Stamp.swift,
+				Models/Stamps/Stamps.swift,
+			);
+			target = 6D5256282E3A6D8F00420B2D /* Beer FestivalTests */;
+		};
 		6D52563B2E3A6D8F00420B2D /* Exceptions for "Beer Festival" folder in "Beer Festival" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -44,6 +53,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				6D52563B2E3A6D8F00420B2D /* Exceptions for "Beer Festival" folder in "Beer Festival" target */,
+				6D4C17932E3B9F6800723EE3 /* Exceptions for "Beer Festival" folder in "Beer FestivalTests" target */,
 			);
 			path = "Beer Festival";
 			sourceTree = "<group>";
@@ -51,11 +61,6 @@
 		6D52562C2E3A6D8F00420B2D /* Beer FestivalTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Beer FestivalTests";
-			sourceTree = "<group>";
-		};
-		6D5256362E3A6D8F00420B2D /* Beer FestivalUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Beer FestivalUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -90,7 +95,6 @@
 			children = (
 				6D5256172E3A6D8E00420B2D /* Beer Festival */,
 				6D52562C2E3A6D8F00420B2D /* Beer FestivalTests */,
-				6D5256362E3A6D8F00420B2D /* Beer FestivalUITests */,
 				6D5256162E3A6D8E00420B2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,9 +169,6 @@
 			);
 			dependencies = (
 				6D5256352E3A6D8F00420B2D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				6D5256362E3A6D8F00420B2D /* Beer FestivalUITests */,
 			);
 			name = "Beer FestivalUITests";
 			packageProductDependencies = (
