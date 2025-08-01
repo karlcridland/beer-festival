@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6D7E178B2E3C9EE70099BF70 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7E178A2E3C9EE70099BF70 /* Stripe */; };
+		6D7E178D2E3C9EE70099BF70 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7E178C2E3C9EE70099BF70 /* StripeApplePay */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6D52562A2E3A6D8F00420B2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -33,9 +38,14 @@
 		6D4C17932E3B9F6800723EE3 /* Exceptions for "Beer Festival" folder in "Beer FestivalTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Models/Drink/Drink.swift,
+				Models/Drink/DrinkType.swift,
 				Models/Festival/Festival.swift,
 				Models/Festival/FestivalDate.swift,
 				Models/Festival/FestivalProtocol.swift,
+				Models/Location/LocationManager.swift,
+				Models/Payments/PaymentManager.swift,
+				Models/Settings/Settings.swift,
 				Models/Stamps/Stamp.swift,
 				Models/Stamps/Stamps.swift,
 				Models/Stamps/StampsError.swift,
@@ -75,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D7E178B2E3C9EE70099BF70 /* Stripe in Frameworks */,
+				6D7E178D2E3C9EE70099BF70 /* StripeApplePay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +146,8 @@
 			);
 			name = "Beer Festival";
 			packageProductDependencies = (
+				6D7E178A2E3C9EE70099BF70 /* Stripe */,
+				6D7E178C2E3C9EE70099BF70 /* StripeApplePay */,
 			);
 			productName = "Beer Festival";
 			productReference = 6D5256152E3A6D8E00420B2D /* Beer Festival.app */;
@@ -214,6 +228,9 @@
 			);
 			mainGroup = 6D52560C2E3A6D8E00420B2D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D5256162E3A6D8E00420B2D /* Products */;
 			projectDirPath = "";
@@ -581,6 +598,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.18.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D7E178A2E3C9EE70099BF70 /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = Stripe;
+		};
+		6D7E178C2E3C9EE70099BF70 /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripeApplePay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D52560D2E3A6D8E00420B2D /* Project object */;
 }

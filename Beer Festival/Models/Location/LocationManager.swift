@@ -12,6 +12,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     private let locationManager = CLLocationManager()
     
+    private var current: CLLocationCoordinate2D?
+    
     override init() {
         super.init()
         locationManager.delegate = self
@@ -21,10 +23,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.last else { return }
-//        let latitude = location.coordinate.latitude
-//        let longitude = location.coordinate.longitude
+        guard let location = locations.last else { return }
+        self.current = location.coordinate
         locationManager.stopUpdatingLocation()
+    }
+    
+    func getCurrentLocation() -> CLLocationCoordinate2D? {
+        return self.current
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

@@ -6,8 +6,14 @@
 //
 
 protocol FestivalProtocol {
+    
     var name: String { get }
     var location: String { get }
     var dates: [FestivalDate] { get }
     var isInDateRange: Bool { get }
+    var attendance: FestivalAttendance { get set }
+    
+    func redeemToken(for drink: Drink) throws
+    func updateAttendance(to attendance: FestivalAttendance)
+    
 }

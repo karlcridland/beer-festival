@@ -12,8 +12,8 @@ protocol StampsProtocol {
     var remaining: Int { get }
     
     func getStamps(_ id: String, _ onComplete: @escaping (Set<Stamp>) -> Void)
-    func purchaseStamps(_ numberOfStamps: Int)
+    func purchaseStamps(_ numberOfStamps: Int, value: Int)
     func add(_ quantity: Int)
-    func redeemStamp() throws
+    func redeemStamp(_ drink: Drink) throws
     
 }

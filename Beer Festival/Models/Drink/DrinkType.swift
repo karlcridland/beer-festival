@@ -22,9 +22,13 @@ enum DrinkType: String, CaseIterable {
     case wheat = "Wheat"
     case mead = "Mead"
     
-    case wine = "Wine"
+    case whiteWine = "White Wine"
+    case roseWine = "Rosé Wine"
+    case redWine = "Red Wine"
+    case sparklingWine = "Sparkling Wine"
+    
     case cider = "Cider"
     
-    case misc = "Misc"
+    case misc = "Miscellaneous"
     
 }

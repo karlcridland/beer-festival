@@ -22,8 +22,10 @@ class Stamps: StampsProtocol {
         
     }
     
-    func purchaseStamps(_ numberOfStamps: Int) {
-        
+    func purchaseStamps(_ numberOfStamps: Int, value: Int) {
+        Settings.shared.payment.purchase(stamps: numberOfStamps, value: value) {
+            
+        }
     }
     
     func add(_ quantity: Int = 1) {
@@ -33,7 +35,7 @@ class Stamps: StampsProtocol {
         }
     }
     
-    func redeemStamp() throws {
+    func redeemStamp(_ drink: Drink) throws {
         let remainingStamps = stampsSet.filter { $0.status == .unredeemed }
         guard let oldest = remainingStamps.sorted(by: { $0.created < $1.created }).first else {
             throw StampsError.noRemaining

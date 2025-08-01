@@ -16,7 +16,7 @@ class MockStamps: Stamps {
         super.init(id: id)
     }
     
-    override func purchaseStamps(_ numberOfStamps: Int) {
+    override func purchaseStamps(_ numberOfStamps: Int, value: Int) {
         self.add(numberOfStamps)
     }
     

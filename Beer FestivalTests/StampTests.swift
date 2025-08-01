@@ -33,7 +33,8 @@ final class StampTests: XCTestCase {
         let festival = MockFestival()
         let originalRemaining: Int = festival.stamps.remaining
         do {
-            try festival.stamps.redeemStamp()
+            let drink: Drink = Drink(name: "test", type: .lager)
+            try festival.stamps.redeemStamp(drink)
             XCTAssertEqual(originalRemaining - 1, festival.stamps.remaining)
         }
         catch {
@@ -44,8 +45,9 @@ final class StampTests: XCTestCase {
     func testRedeemFailsWhenNoStampsRemaining() throws {
         let festival = MockFestival(stamps: 0)
         do {
-            try festival.stamps.redeemStamp()
-            XCTFail("Should have run out of tokens.")
+            let drink: Drink = Drink(name: "test", type: .lager)
+            try festival.stamps.redeemStamp(drink)
+            XCTFail("Should have thrown error as no tokens to redeem.")
         }
         catch {
             XCTAssert(true)
