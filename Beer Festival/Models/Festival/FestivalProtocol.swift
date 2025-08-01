@@ -9,4 +9,5 @@ protocol FestivalProtocol {
     var name: String { get }
     var location: String { get }
     var dates: [FestivalDate] { get }
+    var isInDateRange: Bool { get }
 }

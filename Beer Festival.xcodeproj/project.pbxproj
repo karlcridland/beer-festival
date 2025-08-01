@@ -34,8 +34,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Models/Festival/Festival.swift,
+				Models/Festival/FestivalDate.swift,
+				Models/Festival/FestivalProtocol.swift,
 				Models/Stamps/Stamp.swift,
 				Models/Stamps/Stamps.swift,
+				Models/Stamps/StampsError.swift,
+				Models/Stamps/StampsProtocol.swift,
+				Models/Stamps/StampStatus.swift,
 			);
 			target = 6D5256282E3A6D8F00420B2D /* Beer FestivalTests */;
 		};

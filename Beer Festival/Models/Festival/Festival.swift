@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class Festival {
+class Festival: FestivalProtocol {
     
     let id: String
     let name: String
@@ -18,13 +18,13 @@ class Festival {
     
     let dates: [FestivalDate]
     
-    init(id: String, name: String, location: String, coordinate: CLLocationCoordinate2D, dates: [FestivalDate]) {
+    init(id: String, name: String, location: String, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil) {
         self.id = id
         self.name = name
         self.location = location
         self.coordinate = coordinate
         self.dates = dates
-        self.stamps = Stamps(id: id)
+        self.stamps = stamps ?? Stamps(id: id)
     }
     
     func getDistance() -> CGFloat {
@@ -35,11 +35,9 @@ class Festival {
         return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude).distance(from: CLLocation(latitude: latitude, longitude: longitude))
     }
     
-}
-
-
-
-struct FestivalDate: Codable {
-    let date: String
-    let url: String
+    var isInDateRange: Bool {
+        let today = FestivalDate(from: Date())
+        return dates.contains(where: { $0 == today })
+    }
+    
 }

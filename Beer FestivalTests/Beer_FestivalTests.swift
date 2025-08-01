@@ -9,18 +9,5 @@ import XCTest
 @testable import Beer_Festival
 
 final class Beer_FestivalTests: XCTestCase {
-    
-    func testTokenStampedWhenDrinkPurchased() throws {
-//        let festival = MockFestival()
-        
-    }
-    
-    func testTokensRedeem() throws {
-        
-    }
-    
-    func testBonusToken() throws {
-        
-    }
 
 }

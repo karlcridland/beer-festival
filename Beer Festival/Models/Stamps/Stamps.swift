@@ -5,11 +5,24 @@
 //  Created by Karl Cridland on 31/07/2025.
 //
 
-class Stamps {
+class Stamps: StampsProtocol {
     
-    private var stampsSet: Set<Stamp> = []
+    internal var stampsSet: Set<Stamp> = []
+    internal var hasLoaded: Bool = false
     
     init(id: String) {
+        self.getStamps(id) { stamps in
+            print(stamps)
+            self.stampsSet = stamps
+            self.hasLoaded = true
+        }
+    }
+    
+    func getStamps(_ id: String, _ onComplete: @escaping (Set<Stamp>) -> Void) {
+        
+    }
+    
+    func purchaseStamps(_ numberOfStamps: Int) {
         
     }
     
@@ -20,11 +33,18 @@ class Stamps {
         }
     }
     
-    func remove(_ stamp: Stamp) {
-        stampsSet.remove(stamp)
+    func redeemStamp() throws {
+        let remainingStamps = stampsSet.filter { $0.status == .unredeemed }
+        guard let oldest = remainingStamps.sorted(by: { $0.created < $1.created }).first else {
+            throw StampsError.noRemaining
+        }
+        stampsSet.remove(oldest)
+        var updatedStamp = oldest
+        updatedStamp.redeem()
+        stampsSet.insert(updatedStamp)
     }
     
-    var nonRedeemedTokens: Int {
+    var remaining: Int {
         return stampsSet.filter { $0.status == .unredeemed }.count
     }
     

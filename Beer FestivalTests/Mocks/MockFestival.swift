@@ -9,13 +9,15 @@ import CoreLocation
 
 class MockFestival: Festival {
     
-    init() {
+    init(stamps: Int = 10) {
+        let id: String = UUID().uuidString
         super.init(
-            id: UUID().uuidString,
+            id: id,
             name: "Test Festival",
             location: "123 Fake Street",
             coordinate: CLLocationCoordinate2D(latitude: 52.04570477764604, longitude: 0.9582248594437506),
-            dates: []
+            dates: [],
+            stamps: MockStamps(id: id, stamps: stamps)
         )
     }
     

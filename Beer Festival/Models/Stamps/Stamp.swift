@@ -10,18 +10,17 @@ import Foundation
 struct Stamp: Hashable {
     
     let id: String
+    let created: Date
     var status: StampStatus
     
-    init(id: String = UUID().uuidString, status: StampStatus = .unredeemed) {
+    init(id: String = UUID().uuidString, created: Date = Date(), status: StampStatus = .unredeemed) {
         self.id = id
+        self.created = created
         self.status = status
     }
     
-}
-
-enum StampStatus: String {
-    case unredeemed
-    case redeemed
-    case cancelled
-    case expired
+    mutating func redeem() {
+        status = .redeemed
+    }
+    
 }
