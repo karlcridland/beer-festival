@@ -15,23 +15,25 @@ class Festival: FestivalProtocol {
     let location: String
     let coordinate: CLLocationCoordinate2D
     let stamps: Stamps
-    let stampValue: Int
+    let pricing: FestivalPricing
     var attendance: FestivalAttendance
+    let inventory: Inventory
     
     let dates: [FestivalDate]
     
-    init(id: String, name: String, location: String, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil, stampValue: Int, attendance: FestivalAttendance = .notAttending) {
+    init(id: String, name: String, location: String, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
         self.id = id
         self.name = name
         self.location = location
         self.coordinate = coordinate
         self.dates = dates
         self.stamps = stamps ?? Stamps(id: id)
-        self.stampValue = stampValue
+        self.pricing = pricing
         self.attendance = attendance
+        self.inventory = inventory ?? Inventory(id: id)
     }
     
-    func updateAttendance(to attendance: FestivalAttendance) {
+    internal func updateAttendance(to attendance: FestivalAttendance) {
         self.attendance = attendance
     }
     

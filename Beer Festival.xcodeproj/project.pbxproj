@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D763F402E3F5B430056C1C2 /* ReownAppKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */; };
+		6D763F422E3F5B430056C1C2 /* ReownWalletKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F412E3F5B430056C1C2 /* ReownWalletKit */; };
+		6D763F442E3F5B430056C1C2 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F432E3F5B430056C1C2 /* WalletConnect */; };
 		6D7E178B2E3C9EE70099BF70 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7E178A2E3C9EE70099BF70 /* Stripe */; };
 		6D7E178D2E3C9EE70099BF70 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7E178C2E3C9EE70099BF70 /* StripeApplePay */; };
 /* End PBXBuildFile section */
@@ -19,19 +22,12 @@
 			remoteGlobalIDString = 6D5256142E3A6D8E00420B2D;
 			remoteInfo = "Beer Festival";
 		};
-		6D5256342E3A6D8F00420B2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6D52560D2E3A6D8E00420B2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6D5256142E3A6D8E00420B2D;
-			remoteInfo = "Beer Festival";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6D5256152E3A6D8E00420B2D /* Beer Festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5256292E3A6D8F00420B2D /* Beer FestivalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Beer FestivalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D5256332E3A6D8F00420B2D /* Beer FestivalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Beer FestivalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D8F99F52E41100F0073DA8F /* Beer Festival.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Beer Festival.xctestplan"; path = "../Beer Festival.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -42,7 +38,13 @@
 				Models/Drink/DrinkType.swift,
 				Models/Festival/Festival.swift,
 				Models/Festival/FestivalDate.swift,
+				Models/Festival/FestivalPricing.swift,
 				Models/Festival/FestivalProtocol.swift,
+				Models/Inventory/Inventory.swift,
+				Models/Inventory/InventoryError.swift,
+				Models/Inventory/InventoryItem.swift,
+				Models/Inventory/InventoryItemProtocol.swift,
+				Models/Inventory/InventoryItemStatus.swift,
 				Models/Location/LocationManager.swift,
 				Models/Payments/PaymentManager.swift,
 				Models/Settings/Settings.swift,
@@ -86,18 +88,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7E178B2E3C9EE70099BF70 /* Stripe in Frameworks */,
+				6D763F442E3F5B430056C1C2 /* WalletConnect in Frameworks */,
 				6D7E178D2E3C9EE70099BF70 /* StripeApplePay in Frameworks */,
+				6D763F422E3F5B430056C1C2 /* ReownWalletKit in Frameworks */,
+				6D763F402E3F5B430056C1C2 /* ReownAppKitUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6D5256262E3A6D8F00420B2D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6D5256302E3A6D8F00420B2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -110,6 +108,7 @@
 		6D52560C2E3A6D8E00420B2D = {
 			isa = PBXGroup;
 			children = (
+				6D8F99F52E41100F0073DA8F /* Beer Festival.xctestplan */,
 				6D5256172E3A6D8E00420B2D /* Beer Festival */,
 				6D52562C2E3A6D8F00420B2D /* Beer FestivalTests */,
 				6D5256162E3A6D8E00420B2D /* Products */,
@@ -121,7 +120,6 @@
 			children = (
 				6D5256152E3A6D8E00420B2D /* Beer Festival.app */,
 				6D5256292E3A6D8F00420B2D /* Beer FestivalTests.xctest */,
-				6D5256332E3A6D8F00420B2D /* Beer FestivalUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +146,9 @@
 			packageProductDependencies = (
 				6D7E178A2E3C9EE70099BF70 /* Stripe */,
 				6D7E178C2E3C9EE70099BF70 /* StripeApplePay */,
+				6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */,
+				6D763F412E3F5B430056C1C2 /* ReownWalletKit */,
+				6D763F432E3F5B430056C1C2 /* WalletConnect */,
 			);
 			productName = "Beer Festival";
 			productReference = 6D5256152E3A6D8E00420B2D /* Beer Festival.app */;
@@ -176,26 +177,6 @@
 			productReference = 6D5256292E3A6D8F00420B2D /* Beer FestivalTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		6D5256322E3A6D8F00420B2D /* Beer FestivalUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6D5256442E3A6D8F00420B2D /* Build configuration list for PBXNativeTarget "Beer FestivalUITests" */;
-			buildPhases = (
-				6D52562F2E3A6D8F00420B2D /* Sources */,
-				6D5256302E3A6D8F00420B2D /* Frameworks */,
-				6D5256312E3A6D8F00420B2D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6D5256352E3A6D8F00420B2D /* PBXTargetDependency */,
-			);
-			name = "Beer FestivalUITests";
-			packageProductDependencies = (
-			);
-			productName = "Beer FestivalUITests";
-			productReference = 6D5256332E3A6D8F00420B2D /* Beer FestivalUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,10 +194,6 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 6D5256142E3A6D8E00420B2D;
 					};
-					6D5256322E3A6D8F00420B2D = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 6D5256142E3A6D8E00420B2D;
-					};
 				};
 			};
 			buildConfigurationList = 6D5256102E3A6D8E00420B2D /* Build configuration list for PBXProject "Beer Festival" */;
@@ -230,6 +207,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */,
+				6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D5256162E3A6D8E00420B2D /* Products */;
@@ -238,7 +216,6 @@
 			targets = (
 				6D5256142E3A6D8E00420B2D /* Beer Festival */,
 				6D5256282E3A6D8F00420B2D /* Beer FestivalTests */,
-				6D5256322E3A6D8F00420B2D /* Beer FestivalUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -252,13 +229,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6D5256272E3A6D8F00420B2D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6D5256312E3A6D8F00420B2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,13 +252,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D52562F2E3A6D8F00420B2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -296,11 +259,6 @@
 			isa = PBXTargetDependency;
 			target = 6D5256142E3A6D8E00420B2D /* Beer Festival */;
 			targetProxy = 6D52562A2E3A6D8F00420B2D /* PBXContainerItemProxy */;
-		};
-		6D5256352E3A6D8F00420B2D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6D5256142E3A6D8E00420B2D /* Beer Festival */;
-			targetProxy = 6D5256342E3A6D8F00420B2D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -524,40 +482,6 @@
 			};
 			name = Release;
 		};
-		6D5256452E3A6D8F00420B2D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J3C436QQA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.karlcridland.Beer-FestivalUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Beer Festival";
-			};
-			name = Debug;
-		};
-		6D5256462E3A6D8F00420B2D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J3C436QQA9;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.karlcridland.Beer-FestivalUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Beer Festival";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -588,18 +512,17 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D5256442E3A6D8F00420B2D /* Build configuration list for PBXNativeTarget "Beer FestivalUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6D5256452E3A6D8F00420B2D /* Debug */,
-				6D5256462E3A6D8F00420B2D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reown-com/reown-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.10;
+			};
+		};
 		6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stripe/stripe-ios";
@@ -611,6 +534,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */;
+			productName = ReownAppKitUI;
+		};
+		6D763F412E3F5B430056C1C2 /* ReownWalletKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */;
+			productName = ReownWalletKit;
+		};
+		6D763F432E3F5B430056C1C2 /* WalletConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */;
+			productName = WalletConnect;
+		};
 		6D7E178A2E3C9EE70099BF70 /* Stripe */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */;
