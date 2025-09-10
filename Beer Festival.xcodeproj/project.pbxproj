@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D6263702E425D7900F2FB9A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6D62636F2E425D7900F2FB9A /* FirebaseAuth */; };
+		6D6263722E425D7900F2FB9A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6263712E425D7900F2FB9A /* FirebaseDatabase */; };
 		6D763F402E3F5B430056C1C2 /* ReownAppKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */; };
 		6D763F422E3F5B430056C1C2 /* ReownWalletKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F412E3F5B430056C1C2 /* ReownWalletKit */; };
 		6D763F442E3F5B430056C1C2 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 6D763F432E3F5B430056C1C2 /* WalletConnect */; };
@@ -27,7 +29,6 @@
 /* Begin PBXFileReference section */
 		6D5256152E3A6D8E00420B2D /* Beer Festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5256292E3A6D8F00420B2D /* Beer FestivalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Beer FestivalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D8F99F52E41100F0073DA8F /* Beer Festival.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Beer Festival.xctestplan"; path = "../Beer Festival.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -88,9 +89,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7E178B2E3C9EE70099BF70 /* Stripe in Frameworks */,
+				6D6263702E425D7900F2FB9A /* FirebaseAuth in Frameworks */,
 				6D763F442E3F5B430056C1C2 /* WalletConnect in Frameworks */,
 				6D7E178D2E3C9EE70099BF70 /* StripeApplePay in Frameworks */,
 				6D763F422E3F5B430056C1C2 /* ReownWalletKit in Frameworks */,
+				6D6263722E425D7900F2FB9A /* FirebaseDatabase in Frameworks */,
 				6D763F402E3F5B430056C1C2 /* ReownAppKitUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,7 +111,6 @@
 		6D52560C2E3A6D8E00420B2D = {
 			isa = PBXGroup;
 			children = (
-				6D8F99F52E41100F0073DA8F /* Beer Festival.xctestplan */,
 				6D5256172E3A6D8E00420B2D /* Beer Festival */,
 				6D52562C2E3A6D8F00420B2D /* Beer FestivalTests */,
 				6D5256162E3A6D8E00420B2D /* Products */,
@@ -149,6 +151,8 @@
 				6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */,
 				6D763F412E3F5B430056C1C2 /* ReownWalletKit */,
 				6D763F432E3F5B430056C1C2 /* WalletConnect */,
+				6D62636F2E425D7900F2FB9A /* FirebaseAuth */,
+				6D6263712E425D7900F2FB9A /* FirebaseDatabase */,
 			);
 			productName = "Beer Festival";
 			productReference = 6D5256152E3A6D8E00420B2D /* Beer Festival.app */;
@@ -208,6 +212,7 @@
 			packageReferences = (
 				6D7E17892E3C9EE70099BF70 /* XCRemoteSwiftPackageReference "stripe-ios" */,
 				6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */,
+				6D62636E2E425D7900F2FB9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D5256162E3A6D8E00420B2D /* Products */;
@@ -515,6 +520,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6D62636E2E425D7900F2FB9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.1.0;
+			};
+		};
 		6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/reown-com/reown-swift";
@@ -534,6 +547,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D62636F2E425D7900F2FB9A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D62636E2E425D7900F2FB9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6D6263712E425D7900F2FB9A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D62636E2E425D7900F2FB9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
 		6D763F3F2E3F5B430056C1C2 /* ReownAppKitUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D763F3E2E3F5B430056C1C2 /* XCRemoteSwiftPackageReference "reown-swift" */;
