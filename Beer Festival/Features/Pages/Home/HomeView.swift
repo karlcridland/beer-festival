@@ -21,6 +21,11 @@ struct HomeView: View {
                 Spacer()
                 Text("Drink Responsibly")
                     .font(.headline)
+                    .foregroundStyle(.chocolate)
+                    .padding()
+                    .background(.backgroundYellow.opacity(0.6))
+                    .padding(2)
+                    .cornerRadius(16)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
