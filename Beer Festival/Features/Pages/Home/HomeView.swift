@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
     
+    @Environment(\.sizeCategory) var sizeCategory
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)], animation: .default)
     
@@ -17,19 +18,20 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                Text("Drink Responsibly")
-                    .font(.headline)
-                    .foregroundStyle(.chocolate)
-                    .padding()
-                    .background(.backgroundYellow.opacity(0.6))
-                    .padding(2)
-                    .cornerRadius(16)
-                
+            ZStack {
+                Color(.backgroundYellow)
+                    .ignoresSafeArea()
+                VStack {
+                    Spacer()
+                    if #available(iOS 26.0, *) {
+                        NavigationView()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.backgroundYellow))
         }
     }
     

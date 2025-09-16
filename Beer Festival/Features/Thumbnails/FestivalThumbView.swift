@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct VenueThumbView: View {
+struct FestivalThumbView: View {
+    
     var body: some View {
-        Text("Venue Thumb")
+        Text("Festival Thumbnail")
     }
+    
 }
