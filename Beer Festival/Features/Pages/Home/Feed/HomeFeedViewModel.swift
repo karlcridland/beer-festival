@@ -9,4 +9,8 @@ import Foundation
 
 class HomeFeedViewModel: ObservableObject {
     
+    var thumbnails: [FestivalThumbView] {
+        return [FestivalThumbView(), FestivalThumbView(), FestivalThumbView()]
+    }
+    
 }

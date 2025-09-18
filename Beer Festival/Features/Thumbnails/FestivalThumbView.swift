@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct FestivalThumbView: View {
+struct FestivalThumbView: View, Hashable {
     
     var body: some View {
-        Text("Festival Thumbnail")
+        HStack {
+            Image("hills")
+        }
     }
     
 }
