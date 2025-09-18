@@ -31,9 +31,9 @@ struct NavButton: View {
             Image(systemName: systemName)
                 .foregroundStyle(Color(.label))
                 .frame(width: height, height: height)
-                .font(.system(size: (height * 2) / 5, weight: .medium))
+                .font(.system(size: height * 0.35, weight: .medium))
                 .glassEffect()
-                .glassEffectID("eraser", in: namespace)
+                .glassEffectID("button", in: namespace)
         }
     }
 }

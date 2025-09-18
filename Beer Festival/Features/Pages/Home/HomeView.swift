@@ -17,12 +17,14 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack (alignment: .bottom) {
+            ZStack(alignment: .bottom) {
                 Color(.backgroundYellow)
                     .ignoresSafeArea()
+                
                 HomeFeedView()
                 NavigationView()
             }
+            .ignoresSafeArea(.container, edges: .bottom)
         }
     }
     

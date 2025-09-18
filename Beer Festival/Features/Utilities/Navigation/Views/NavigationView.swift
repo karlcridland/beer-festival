@@ -18,16 +18,17 @@ struct NavigationView: View {
     @FocusState private var searchFieldFocused: Bool
     
     let height: CGFloat
+    let gap: CGFloat = 12
+    let pointSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
     
     init() {
-        let uiFont = UIFont.preferredFont(forTextStyle: .body)
-        self.height = uiFont.pointSize + 30
+        self.height = self.pointSize + 30
     }
     
     var body: some View {
         if #available(iOS 26.0, *) {
             GlassEffectContainer(spacing: 8) {
-                HStack(spacing: 8) {
+                HStack(spacing: gap) {
                     if !searchExpanded {
                         NavButton("house.fill", height, namespace) {
                             searchExpanded = false
@@ -37,8 +38,8 @@ struct NavigationView: View {
                         .padding(18)
                         .foregroundStyle(Color(.label))
                         .frame(height: height)
-                        .font(.title3)
-                        .glassEffect()
+                        .font(.system(size: pointSize + 2, weight: .regular))
+                        .glassEffect(.regular)
                         .glassEffectID("search", in: namespace)
                         .focused($searchFieldFocused)
                         .onChange(of: searchFieldFocused) { _, focused in
@@ -63,8 +64,9 @@ struct NavigationView: View {
                     }
                 }
             }
-            .padding(20)
+            .padding(searchFieldFocused ? gap : 30)
         }
+        
     }
     
 }
@@ -72,3 +74,4 @@ struct NavigationView: View {
 #Preview {
     HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
+

@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class Festival: FestivalProtocol {
+class Festival: FestivalProtocol, Hashable {
     
     let id: String
     let name: String
@@ -52,6 +52,14 @@ class Festival: FestivalProtocol {
     var isInDateRange: Bool {
         let today = FestivalDate(from: Date())
         return dates.contains(where: { $0 == today })
+    }
+    
+    static func == (lhs: Festival, rhs: Festival) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }

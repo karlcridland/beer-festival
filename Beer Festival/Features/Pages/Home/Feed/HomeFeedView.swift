@@ -14,22 +14,16 @@ struct HomeFeedView: View {
     init() {
         _viewModel = StateObject(wrappedValue: HomeFeedViewModel())
     }
-    
-    var festivals: [Int] = [1, 2, 3]
         
     var body: some View {
-        List {
-            ForEach(0..<20, id: \.self) { i in
-                FestivalThumbView()
-                    .frame(maxWidth: .infinity)  // 👈 expand to parent width
-                    .frame(height: 120)          // example height
-                    .background(.white)
-                    .cornerRadius(12)
-                    .shadow(radius: 2)
+        VStack {
+            ScrollView {
+                ForEach(viewModel.festivals, id: \.id) { festival in
+                    FestivalThumbView(festival: festival)
+                }
             }
+            .frame(maxWidth: .infinity)
         }
-        .listRowBackground(Color.clear)
-        .frame(maxWidth: .infinity)
     }
     
 }
