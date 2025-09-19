@@ -1,5 +1,5 @@
 //
-//  VenueView.swift
+//  FestivalView.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 11/09/2025.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct VenueView: View {
+struct FestivalView: View {
     
-    let viewModel: VenueViewModel
+    let viewModel: FestivalViewModel
     
-    init(viewModel: VenueViewModel) {
+    init(viewModel: FestivalViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        Text("VenueView")
+        Text("FestivalView")
     }
     
 }

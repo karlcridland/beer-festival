@@ -1,5 +1,5 @@
 //
-//  VenueViewModel.swift
+//  FestivalViewModel.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 11/09/2025.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-class VenueViewModel: ObservableObject {
+class FestivalViewModel: ObservableObject {
     
 }
