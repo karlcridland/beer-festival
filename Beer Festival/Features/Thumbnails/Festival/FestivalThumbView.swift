@@ -17,28 +17,30 @@ struct FestivalThumbView: View, Hashable {
                 .font(.title3.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(festival.venue.address)
-                .font(.title3)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
             HStack {
-                VStack {
+                VStack(alignment: .center) {
                     FestivalPictureView(id: festival.id)
+                    
+                    Text("\(festival.venue.city)\n\(festival.dates.toDates)")
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                }
+                VStack {
                 }
             }
         }
+        .foregroundStyle(.white)
         .frame(maxWidth: .infinity)
         .padding()
         .background(Color(.sage))
-        .cornerRadius(10)
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 0)
         .padding([.top, .leading, .trailing])
     }
+    
     
 }
 
 #Preview {
     HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
-
-
-

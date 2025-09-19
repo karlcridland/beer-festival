@@ -10,6 +10,7 @@ struct Venue: Hashable {
     let id: String
     let name: String
     let address: String
+    let city: String
     let postcode: String
     
     func hash(into hasher: inout Hasher) {

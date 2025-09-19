@@ -19,6 +19,16 @@ struct FestivalDate: Codable {
         self.year = components.year ?? 1970
     }
     
+    init(day: Int, month: Int, year: Int) {
+        self.day = day
+        self.month = month
+        self.year = year
+    }
+    
+    var toDate: String {
+        return "\(day)/\(month)/\(year)"
+    }
+    
     static func < (lhs: FestivalDate, rhs: FestivalDate) -> Bool {
         if lhs.year != rhs.year {
             return lhs.year < rhs.year
@@ -35,6 +45,14 @@ struct FestivalDate: Codable {
     
     static func > (lhs: FestivalDate, rhs: FestivalDate) -> Bool {
         return !(lhs < rhs)
+    }
+    
+}
+
+extension [FestivalDate] {
+    
+    var toDates: String {
+        self.map({"\($0.day)th"}).joined(separator: ", ")
     }
     
 }
