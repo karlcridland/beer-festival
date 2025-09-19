@@ -8,7 +8,7 @@
 protocol FestivalProtocol {
     
     var name: String { get }
-    var location: String { get }
+    var venue: Venue { get }
     var dates: [FestivalDate] { get }
     var pricing: FestivalPricing { get }
     var isInDateRange: Bool { get }

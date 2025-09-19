@@ -12,7 +12,7 @@ class Festival: FestivalProtocol, Hashable {
     
     let id: String
     let name: String
-    let location: String
+    let venue: Venue
     let coordinate: CLLocationCoordinate2D
     let stamps: Stamps
     let pricing: FestivalPricing
@@ -21,10 +21,10 @@ class Festival: FestivalProtocol, Hashable {
     
     let dates: [FestivalDate]
     
-    init(id: String, name: String, location: String, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
+    init(id: String, name: String, venue: Venue, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
         self.id = id
         self.name = name
-        self.location = location
+        self.venue = venue
         self.coordinate = coordinate
         self.dates = dates
         self.stamps = stamps ?? Stamps(id: id)

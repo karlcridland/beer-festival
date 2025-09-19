@@ -17,7 +17,7 @@ struct FestivalThumbView: View, Hashable {
                 .font(.title3.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(festival.location)
+            Text(festival.venue.address)
                 .font(.title3)
                 .frame(maxWidth: .infinity, alignment: .leading)
             

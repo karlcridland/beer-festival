@@ -41,6 +41,7 @@
 				Models/Festival/FestivalDate.swift,
 				Models/Festival/FestivalPricing.swift,
 				Models/Festival/FestivalProtocol.swift,
+				Models/Festival/Venue.swift,
 				Models/Inventory/Inventory.swift,
 				Models/Inventory/InventoryError.swift,
 				Models/Inventory/InventoryItem.swift,

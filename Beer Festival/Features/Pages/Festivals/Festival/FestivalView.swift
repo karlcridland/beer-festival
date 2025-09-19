@@ -16,7 +16,20 @@ struct FestivalView: View {
     }
     
     var body: some View {
-        Text("FestivalView")
+        NavigationStack {
+            ZStack {
+                FestivalHeaderView()
+            }
+            .ignoresSafeArea(.container, edges: .bottom)
+        }
+    }
+    
+}
+
+struct FestivalHeaderView: View {
+    
+    var body: some View {
+    
     }
     
 }
