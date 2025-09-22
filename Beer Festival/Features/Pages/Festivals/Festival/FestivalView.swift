@@ -9,18 +9,21 @@ import SwiftUI
 
 struct FestivalView: View {
     
-    let viewModel: FestivalViewModel
+    @ObservedObject var viewModel: FestivalViewModel
     
-    init(viewModel: FestivalViewModel) {
-        self.viewModel = viewModel
+    init(festival: Festival) {
+        _viewModel = ObservedObject(wrappedValue: FestivalViewModel(festival: festival))
     }
     
     var body: some View {
         NavigationStack {
             ZStack {
+                Color(.backgroundYellow)
+                    
                 FestivalHeaderView()
             }
             .ignoresSafeArea(.container, edges: .bottom)
+            .background(.backgroundYellow)
         }
     }
     

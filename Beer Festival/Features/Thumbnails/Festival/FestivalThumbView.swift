@@ -10,6 +10,7 @@ import SwiftUI
 struct FestivalThumbView: View, Hashable {
     
     let festival: Festival
+    @State var showFestivalPage: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -36,8 +37,21 @@ struct FestivalThumbView: View, Hashable {
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 0)
         .padding([.top, .leading, .trailing])
+        .navigationDestination(isPresented: $showFestivalPage) {
+            FestivalView(festival: festival)
+        }
+        .onTapGesture {
+            showFestivalPage = true
+        }
     }
     
+    static func == (lhs: FestivalThumbView, rhs: FestivalThumbView) -> Bool {
+        lhs.festival.id == rhs.festival.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(festival.id)
+    }
     
 }
 

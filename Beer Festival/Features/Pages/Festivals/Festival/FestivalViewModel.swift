@@ -9,4 +9,10 @@ import Foundation
 
 class FestivalViewModel: ObservableObject {
     
+    let festival: Festival
+    
+    init(festival: Festival) {
+        self.festival = festival
+    }
+    
 }
