@@ -6,69 +6,70 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct NavigationView: View {
     
-    @Namespace private var namespace
+    @ObservedObject var viewModel: NavigationViewModel
+    @FocusState var isSearching: Bool
     
-    @State private var searchExpanded: Bool = false
-    @State private var search: String = ""
-    @State private var state: NavigationState = .home
-    
-    @FocusState private var searchFieldFocused: Bool
-    
-    let height: CGFloat
-    let gap: CGFloat = 12
-    let pointSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize
-    
-    init() {
-        self.height = self.pointSize + 30
+    init(search: Binding<String>) {
+        _viewModel = ObservedObject(initialValue: NavigationViewModel(search: search))
     }
     
     var body: some View {
-        if #available(iOS 26.0, *) {
-            GlassEffectContainer(spacing: 8) {
-                HStack(spacing: gap) {
-                    if !searchExpanded {
-                        NavButton("house.fill", height, namespace) {
-                            searchExpanded = false
+        ZStack{}
+        .toolbar {
+            if #available(iOS 26.0, *) {
+                ToolbarItem(placement: .bottomBar) {
+                    TextField("Search", text: viewModel.$search, onEditingChanged: { isEditing in
+                        withAnimation {
+                            viewModel.isSearching = isEditing
+                        }
+                    })
+                    .focused($isSearching)
+                    .padding(.horizontal, 10)
+                }
+                ToolbarSpacer(.flexible, placement: .bottomBar)
+                ToolbarItem(placement: .bottomBar) {
+                    if (viewModel.isSearching) {
+                        Button("Close", systemImage: "xmark") {
+                            isSearching = false
+                            viewModel.exitSearch()
                         }
                     }
-                    TextField("Search", text: $search)
-                        .padding(18)
-                        .foregroundStyle(Color(.label))
-                        .frame(height: height)
-                        .font(.system(size: pointSize + 2, weight: .regular))
-                        .glassEffect(.regular)
-                        .glassEffectID("search", in: namespace)
-                        .focused($searchFieldFocused)
-                        .onChange(of: searchFieldFocused) { _, focused in
-                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                                withAnimation {
-                                    self.searchExpanded = focused
-                                }
-                            }
-                        }
-
-                    if searchExpanded {
-                        NavButton("xmark", height, namespace) {
-                            searchExpanded = false
-                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                                searchFieldFocused = false
-                            }
-                        }
-                    } else {
-                        NavButton("ticket", height, namespace) {
-                            searchExpanded = false
+                    else {
+                        Button("Settings", systemImage: "gear") {
+                            viewModel.openSettings()
                         }
                     }
                 }
+            } else {
+                ToolbarItem(placement: .bottomBar) {
+                    TextField("Test", text: viewModel.$search)
+                        .padding(.horizontal, 10)
+                }
             }
-            .padding(searchFieldFocused ? gap : 30)
+            
         }
-        
     }
     
+}
+
+class NavigationViewModel: ObservableObject {
+    
+    @Binding var search: String
+    @Published var isSearching: Bool = false
+
+    init(search: Binding<String>) {
+        _search = search
+    }
+
+    func exitSearch() {
+        isSearching = false
+    }
+
+    func openSettings() { }
 }
 
 #Preview {

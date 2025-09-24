@@ -14,6 +14,15 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)], animation: .default)
     
     private var items: FetchedResults<Item>
+    
+    @State var search: String = ""
+    @State private var menuSelection: BFMenu = .Home
+    
+    enum BFMenu: String, CaseIterable {
+        case Home
+        case Tokens
+        case Profile
+    }
 
     var body: some View {
         NavigationStack {
@@ -22,9 +31,9 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 HomeFeedView()
-                NavigationView()
+                NavigationView(search: $search)
             }
-            .ignoresSafeArea(.container, edges: .bottom)
+            
         }
     }
     
