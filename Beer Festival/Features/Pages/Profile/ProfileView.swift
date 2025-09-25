@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    let viewModel: ProfileViewModel
+    @ObservedObject var viewModel: ProfileViewModel
     
-    init(viewModel: ProfileViewModel) {
-        self.viewModel = viewModel
+    init() {
+        _viewModel = ObservedObject(initialValue: ProfileViewModel())
     }
     
     var body: some View {
