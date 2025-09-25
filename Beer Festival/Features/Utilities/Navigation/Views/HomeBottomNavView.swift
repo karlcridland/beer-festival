@@ -14,6 +14,7 @@ struct HomeBottomNavView: View {
     
     @ObservedObject var viewModel: HomeBottomNavViewModel
     @FocusState private var isSearchFieldFocused: Bool
+    @State var isSettingsOpen: Bool = false
     
     init(search: Binding<String>) {
         _viewModel = ObservedObject(initialValue: HomeBottomNavViewModel(search: search))
@@ -45,10 +46,13 @@ struct HomeBottomNavView: View {
                     }
                 } else {
                     Button("Settings", systemImage: "gear") {
-                        viewModel.openSettings()
+                        isSettingsOpen = true
                     }
                 }
             }
+        }
+        .navigationDestination(isPresented: $isSettingsOpen) {
+            SettingsView()
         }
     }
     

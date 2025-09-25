@@ -22,8 +22,6 @@ class HomeBottomNavViewModel: ObservableObject {
         isSearching = false
         refresh()
     }
-
-    func openSettings() { }
     
     func refresh() {
         onRefresh = UUID().uuidString
