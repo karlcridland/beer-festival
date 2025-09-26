@@ -41,7 +41,6 @@
 				Models/Festival/FestivalDate.swift,
 				Models/Festival/FestivalPricing.swift,
 				Models/Festival/FestivalProtocol.swift,
-				Models/Festival/Venue.swift,
 				Models/Inventory/Inventory.swift,
 				Models/Inventory/InventoryError.swift,
 				Models/Inventory/InventoryItem.swift,
@@ -55,6 +54,7 @@
 				Models/Stamps/StampsError.swift,
 				Models/Stamps/StampsProtocol.swift,
 				Models/Stamps/StampStatus.swift,
+				Models/Venue/Venue.swift,
 			);
 			target = 6D5256282E3A6D8F00420B2D /* Beer FestivalTests */;
 		};

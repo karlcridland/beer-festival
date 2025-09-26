@@ -24,7 +24,7 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 HomeFeedView()
-                HomeBottomNavView(search: $search)
+                HomeToolbarView(search: $search)
             }
             
         }

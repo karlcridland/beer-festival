@@ -1,5 +1,5 @@
 //
-//  HomeBottomNavView.swift
+//  HomeToolbarView.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 16/09/2025.
@@ -8,15 +8,18 @@
 import SwiftUI
 import CoreData
 
-struct HomeBottomNavView: View {
+struct HomeToolbarView: View {
     
-    @StateObject var viewModel: HomeBottomNavViewModel
     @FocusState private var isSearchFieldFocused: Bool
+    @State var isSearching: Bool = false
+    
     @State var isSettingsOpen: Bool = false
     @State var isProfileOpen: Bool = false
     
+    @Binding var search: String
+    
     init(search: Binding<String>) {
-        _viewModel = StateObject(wrappedValue: HomeBottomNavViewModel(search: search))
+        _search = search
     }
     
     var body: some View {
@@ -24,19 +27,20 @@ struct HomeBottomNavView: View {
         }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                ToolbarButton(label: "Profile", systemImage: "person.fill", shouldAppear: !viewModel.isSearching) {
+                ToolbarButton(label: "Profile", systemImage: "person.fill", shouldAppear: !isSearching) {
                     isProfileOpen = true
+                    exitSearch()
                 }
             }
             
-            if #available(iOS 26.0, *) {
+            if #available(iOS 26.0, *), !isSearching {
                 ToolbarSpacer(.flexible, placement: .bottomBar)
             }
             
             ToolbarItem(placement: .bottomBar) {
-                TextField("Search", text: viewModel.$search, onEditingChanged: { isEditing in
+                TextField("Search", text: $search, onEditingChanged: { isEditing in
                     withAnimation {
-                        viewModel.isSearching = true
+                        isSearching = true
                     }
                 })
                     .focused($isSearchFieldFocused)
@@ -45,6 +49,7 @@ struct HomeBottomNavView: View {
                     .padding(.horizontal, 10)
                     .foregroundStyle(Color(.label))
                     .tint(Color(.label))
+                    .frame(maxWidth: .infinity)
             }
             
             if #available(iOS 26.0, *) {
@@ -52,8 +57,13 @@ struct HomeBottomNavView: View {
             }
             
             ToolbarItem(placement: .bottomBar) {
-                ToolbarButton(label: "Settings", systemImage: "gear", shouldAppear: !viewModel.isSearching) {
+                ToolbarButton(label: "Settings", systemImage: "gear", shouldAppear: !isSearching) {
                     isSettingsOpen = true
+                    exitSearch()
+                }
+                ToolbarButton(label: "Close search", systemImage: "xmark", shouldAppear: isSearching) {
+                    isSearching = false
+                    isSearchFieldFocused = false
                 }
             }
         }
@@ -70,33 +80,10 @@ struct HomeBottomNavView: View {
     func exitSearch() {
         withAnimation {
             isSearchFieldFocused = false
-            viewModel.exitSearch()
+            isSearching = false
         }
     }
-}
-
-struct ToolbarButton: View {
     
-    let label, systemImage: String
-    var shouldAppear: Bool
-    var onClick: () -> Void
-    
-    init(label: String, systemImage: String, shouldAppear: Bool = true, onClick: @escaping () -> Void) {
-        self.label = label
-        self.systemImage = systemImage
-        self.shouldAppear = shouldAppear
-        self.onClick = onClick
-    }
-    
-    var body: some View {
-        if shouldAppear {
-            Button(label, systemImage: systemImage) {
-                onClick()
-            }
-            .foregroundStyle(Color(.label))
-            .tint(Color(.label))
-        }
-    }
 }
 
 #Preview {
