@@ -10,14 +10,15 @@ import SwiftUI
 struct FestivalView: View {
     
     @ObservedObject var viewModel: FestivalViewModel
+    @State var showStampsPage: Bool = false
     
     init(festival: Festival) {
         _viewModel = ObservedObject(wrappedValue: FestivalViewModel(festival: festival))
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .top) {
+        ZStack(alignment: .top) {
+            ZStack {
                 Color(.backgroundYellow)
             }
             .ignoresSafeArea(.container, edges: .bottom)
@@ -28,14 +29,14 @@ struct FestivalView: View {
                     FestivalIconView(festival: viewModel.festival)
                 })
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        // TODO: Handle action for the nav bar button
-                    } label: {
-                        Image(systemName: "plus")
+                    FestivalStampsButton {
+                        showStampsPage = true
                     }
                 }
             }
-            
+            .navigationDestination(isPresented: $showStampsPage) {
+                StampsView(festival: viewModel.festival)
+            }
         }
     }
     

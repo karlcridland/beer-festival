@@ -9,10 +9,10 @@ import SwiftUI
 
 struct StampsView: View {
     
-    let viewModel: StampsViewModel
+    @ObservedObject var viewModel: StampsViewModel
     
-    init(viewModel: StampsViewModel) {
-        self.viewModel = viewModel
+    init(festival: Festival) {
+        _viewModel = ObservedObject(initialValue: StampsViewModel())
     }
     
     var body: some View {

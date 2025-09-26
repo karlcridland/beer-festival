@@ -26,44 +26,63 @@ struct HomeToolbarView: View {
         ZStack {
         }
         .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                ToolbarButton(label: "Profile", systemImage: "person.fill", shouldAppear: !isSearching) {
-                    isProfileOpen = true
-                    exitSearch()
-                }
-            }
-            
-            if #available(iOS 26.0, *), !isSearching {
-                ToolbarSpacer(.flexible, placement: .bottomBar)
-            }
-            
-            ToolbarItem(placement: .bottomBar) {
-                TextField("Search", text: $search, onEditingChanged: { isEditing in
-                    withAnimation {
-                        isSearching = true
-                    }
-                })
-                    .focused($isSearchFieldFocused)
-                    .submitLabel(.done)
-                    .onSubmit { exitSearch() }
-                    .padding(.horizontal, 10)
-                    .foregroundStyle(Color(.label))
-                    .tint(Color(.label))
-                    .frame(maxWidth: .infinity)
-            }
-            
             if #available(iOS 26.0, *) {
-                ToolbarSpacer(.flexible, placement: .bottomBar)
-            }
-            
-            ToolbarItem(placement: .bottomBar) {
-                ToolbarButton(label: "Settings", systemImage: "gear", shouldAppear: !isSearching) {
-                    isSettingsOpen = true
-                    exitSearch()
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
                 }
-                ToolbarButton(label: "Close search", systemImage: "xmark", shouldAppear: isSearching) {
-                    isSearching = false
-                    isSearchFieldFocused = false
+                
+                ToolbarItem(placement: .bottomBar) {
+                    ToolbarButton(label: "Profile", systemImage: "person.fill", shouldAppear: !isSearching) {
+                        isProfileOpen = true
+                        exitSearch()
+                    }
+                }
+            
+                if (!isSearching) {
+                    ToolbarSpacer(.flexible, placement: .bottomBar)
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    TextField("Search", text: $search, onEditingChanged: { isEditing in
+                        withAnimation {
+                            isSearching = true
+                        }
+                    })
+                        .focused($isSearchFieldFocused)
+                        .submitLabel(.done)
+                        .onSubmit { exitSearch() }
+                        .padding(.horizontal, 10)
+                        .foregroundStyle(Color(.label))
+                        .tint(Color(.label))
+                        .frame(maxWidth: .infinity)
+                }
+                
+                ToolbarSpacer(.flexible, placement: .bottomBar)
+                
+                ToolbarItem(placement: .bottomBar) {
+                    ToolbarButton(label: "Settings", systemImage: "gear", shouldAppear: !isSearching) {
+                        isSettingsOpen = true
+                        exitSearch()
+                    }
+                    ToolbarButton(label: "Close search", systemImage: "xmark", shouldAppear: isSearching) {
+                        isSearching = false
+                        isSearchFieldFocused = false
+                    }
+                }
+            } else {
+                
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    ToolbarButton(label: "Search", systemImage: "magnifyingglass") {
+                        
+                    }
+                    ToolbarButton(label: "More Options", systemImage: "ellipsis") {
+                        
+                    }
                 }
             }
         }

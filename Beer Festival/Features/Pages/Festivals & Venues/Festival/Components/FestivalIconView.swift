@@ -43,6 +43,7 @@ struct FestivalIconView: View {
                             Text(festival.venue.name)
                                 .font(.caption)
                         }
+                        .foregroundStyle(Color(.label))
                         .padding(.horizontal, horizontal_padding)
                         .padding(.vertical, vertical_padding)
                         .glassEffect(.clear)
