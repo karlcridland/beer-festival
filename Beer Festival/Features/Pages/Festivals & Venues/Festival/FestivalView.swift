@@ -17,25 +17,36 @@ struct FestivalView: View {
     }
     
     var body: some View {
+        let hasStamps: Bool = viewModel.festival.stamps.remaining > 0
         ZStack(alignment: .top) {
-            ZStack {
-                Color(.backgroundYellow)
-            }
-            .ignoresSafeArea(.container, edges: .bottom)
-            .ignoresSafeArea(.keyboard, edges: .top)
-            .background(.backgroundYellow)
-            .toolbar {
-                ToolbarItem(placement: .principal, content: {
-                    FestivalIconView(festival: viewModel.festival)
-                })
-                ToolbarItem(placement: .topBarTrailing) {
-                    FestivalStampsButton {
-                        showStampsPage = true
+            if #available(iOS 26.0, *) {
+                ZStack {
+                    Color(.backgroundYellow)
+                }
+                .ignoresSafeArea(.container, edges: .bottom)
+                .ignoresSafeArea(.keyboard, edges: .top)
+                .background(.backgroundYellow)
+                .toolbar {
+                    ToolbarItem(placement: .principal, content: {
+                        FestivalIconView(festival: viewModel.festival)
+                    })
+                    ToolbarItem(placement: .topBarTrailing) {
+                        FestivalStampsButton(stamps: viewModel.festival.stamps) {
+                            showStampsPage = true
+                        }
+                        .id(viewModel.refresh)
                     }
                 }
-            }
-            .navigationDestination(isPresented: $showStampsPage) {
-                StampsView(festival: viewModel.festival)
+                .buttonStyle(.glassProminent)
+                .tint(.sage)
+                .navigationDestination(isPresented: $showStampsPage) {
+                    StampsView(festival: viewModel.festival, onRefresh: {
+                        viewModel.refresh = UUID().uuidString
+                        print("refreshing")
+                    })
+                }
+            } else {
+                // Fallback on earlier versions
             }
         }
     }

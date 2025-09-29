@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FestivalStampsButton: View {
     
+    @ObservedObject var stamps: Stamps
     var onClick: () -> Void
     
     var body: some View {
@@ -17,7 +18,13 @@ struct FestivalStampsButton: View {
         } label: {
             HStack {
                 Image(systemName: "ticket")
-                Image(systemName: "plus")
+                if stamps.remaining > 0 {
+                    Text(String(stamps.remaining))
+                        .bold()
+                }
+                else {
+                    Image(systemName: "plus")
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ import Foundation
 class FestivalViewModel: ObservableObject {
     
     let festival: Festival
+    var refresh: String = UUID().uuidString
     
     init(festival: Festival) {
         self.festival = festival

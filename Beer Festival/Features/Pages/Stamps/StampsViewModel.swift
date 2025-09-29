@@ -9,4 +9,10 @@ import Foundation
 
 class StampsViewModel: ObservableObject {
     
+    let festival: Festival
+    
+    init(festival: Festival) {
+        self.festival = festival
+    }
+    
 }

@@ -9,14 +9,26 @@ import SwiftUI
 
 struct StampsView: View {
     
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: StampsViewModel
     
-    init(festival: Festival) {
-        _viewModel = ObservedObject(initialValue: StampsViewModel())
+    let onRefresh: () -> Void
+    
+    init(festival: Festival, onRefresh: @escaping () -> Void) {
+        _viewModel = ObservedObject(initialValue: StampsViewModel(festival: festival))
+        self.onRefresh = onRefresh
     }
     
     var body: some View {
-        Text("StampsView")
+        Button {
+            DispatchQueue.main.async {
+                viewModel.festival.stamps.add(5)
+                dismiss()
+                onRefresh()
+            }
+        } label: {
+            Text("Add 5 stamps")
+        }
     }
     
 }
