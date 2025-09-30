@@ -58,5 +58,7 @@ struct FestivalPictureView: View {
 }
 
 #Preview {
-    HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    if #available(iOS 26.0, *) {
+        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }

@@ -8,30 +8,68 @@
 import SwiftUI
 import CoreData
 
+@available(iOS 26.0, *)
 struct HomeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)], animation: .default)
-    
-    private var items: FetchedResults<Item>
     
     @State var search: String = ""
+    @FocusState private var isSearching: Bool
 
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
-                Color(.backgroundYellow)
-                    .ignoresSafeArea()
-                
-                HomeFeedView()
-                HomeToolbarView(search: $search)
-            }
-            
+            HomeFeedView()
+                .background(.backgroundYellow)
+                .toolbar {
+                    
+                    // Bottom left toolbar - displays when not searching
+                    
+                    if (!isSearching) {
+                        ToolbarItem(placement: .bottomBar) {
+                            Button("Filter", systemImage: "line.3.horizontal.decrease") {
+                                
+                            }
+                        }
+                        ToolbarSpacer(placement: .bottomBar)
+                    }
+                    
+                    // Bottom center toolbar - displays always but shifts side when in use/not in use
+                    
+                    ToolbarItem(id: "Search Bar", placement: .bottomBar) {
+                        TextField("Search", text: $search)
+                            .focused($isSearching)
+                            .padding(.horizontal, 10)
+                            .submitLabel(.search)
+                            .onSubmit {
+                                isSearching = false
+                            }
+                    }
+                    
+                    // Bottom right toolbar - displays when searching to cancel search
+                    
+                    if (isSearching) {
+                        ToolbarSpacer(placement: .bottomBar)
+                        ToolbarItem(placement: .bottomBar) {
+                            Button("Close", systemImage: "xmark") {
+                                isSearching = false
+                            }
+                        }
+                    }
+                    
+                    // Top right navigation - option menu adding dropdowns to helpful pages
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HomeMenuView(destinations: [.profile, .settings])
+                    }
+                    
+                }
         }
     }
     
 }
 
 #Preview {
-    HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    if #available(iOS 26.0, *) {
+        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }

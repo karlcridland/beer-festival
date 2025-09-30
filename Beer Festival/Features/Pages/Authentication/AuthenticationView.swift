@@ -25,7 +25,7 @@ struct AuthenticationView: View {
                 Spacer()
                 VStack {
                     
-                    Text("Click sign in with Apple to continue, if you don't have an account this will sign you up.")
+                    Text("Click sign in with Apple to continue, if you don't have an account this will create one for you.")
                         .font(.caption)
                         .padding(10)
                         .frame(maxWidth: 360)
@@ -34,6 +34,7 @@ struct AuthenticationView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("Sign in")
+            .toolbarTitleDisplayMode(.inlineLarge)
             .background(.backgroundYellow)
             .toolbar {
                 if #available(iOS 26.0, *) {

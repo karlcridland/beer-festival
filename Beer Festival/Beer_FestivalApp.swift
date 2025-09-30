@@ -22,8 +22,13 @@ struct Beer_FestivalApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if #available(iOS 26.0, *) {
+                HomeView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                HomeViewOld()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
     }
 }
