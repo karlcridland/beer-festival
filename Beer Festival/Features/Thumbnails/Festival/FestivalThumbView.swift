@@ -39,7 +39,11 @@ struct FestivalThumbView: View, Hashable {
         .padding([.leading, .trailing], 12)
         .padding([.top, .bottom], 3)
         .navigationDestination(isPresented: $showFestivalPage) {
-            FestivalView(festival: festival)
+            if #available(iOS 26.0, *) {
+                FestivalView(festival: festival)
+            } else {
+                FestivalViewOld(festival: festival)
+            }
         }
         .onTapGesture {
             showFestivalPage = true

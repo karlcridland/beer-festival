@@ -21,5 +21,7 @@ struct VenueView: View {
 }
 
 #Preview {
-    FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    if #available(iOS 26.0, *) {
+        FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }

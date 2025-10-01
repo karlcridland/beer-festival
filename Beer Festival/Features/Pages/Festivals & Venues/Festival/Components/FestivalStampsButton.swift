@@ -10,23 +10,32 @@ import SwiftUI
 struct FestivalStampsButton: View {
     
     @ObservedObject var stamps: Stamps
-    var onClick: () -> Void
+    let onClick: () -> Void
     
     var body: some View {
-        Button {
-            onClick()
-        } label: {
-            HStack {
+        let stampCount: Int = stamps.remaining
+        HStack {
+            Button {
+                onClick()
+            } label: {
                 Image(systemName: "ticket")
-                if stamps.remaining > 0 {
-                    Text(String(stamps.remaining))
-                        .bold()
-                }
-                else {
-                    Image(systemName: "plus")
-                }
+                Text(stampCount > 0 ? "\(stampCount) stamp\(stampCount  == 1 ? "" : "s")" : "add stamps")
+                Spacer()
             }
+            Button("Scan Code", systemImage: "barcode.viewfinder") {
+                print("bing bong")
+            }
+            .opacity(stampCount == 0 ? 0.3 : 1.0)
+            .disabled(stampCount == 0)
         }
+        .font(.body.bold())
+        .padding(.horizontal, 10)
     }
     
+}
+
+#Preview {
+    if #available(iOS 26.0, *) {
+        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }

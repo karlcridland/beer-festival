@@ -14,7 +14,7 @@ enum HomeDestination: String {
     
     var systemImage: String {
         switch self {
-        case .profile: return "person"
+        case .profile: return "person.fill"
         case .settings: return "gear"
         case .filter: return "line.3.horizontal.decrease"
         }

@@ -35,7 +35,7 @@ struct HomeView: View {
                     DefaultToolbarItem(kind: .search, placement: .bottomBar)
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HomeMenuView(destinations: [.profile, .settings])
+                    HomeMenuView(destinations: [.profile, .settings], expand: true)
                 }
                 
             }
