@@ -24,7 +24,6 @@ struct HomeFeedView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .background(.backgroundYellow)
     }
     
 }

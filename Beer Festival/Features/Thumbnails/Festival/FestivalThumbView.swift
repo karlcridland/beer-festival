@@ -30,13 +30,14 @@ struct FestivalThumbView: View, Hashable {
                 }
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color(.label))
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.sage))
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 0)
-        .padding([.top, .leading, .trailing])
+        .padding(20)
+        .background(Color(.thumbnailGrey))
+        .cornerRadius(24)
+        .shadow(color: .black.opacity(0.05), radius: 6, x: 0, y: 0)
+        .padding([.leading, .trailing], 12)
+        .padding([.top, .bottom], 3)
         .navigationDestination(isPresented: $showFestivalPage) {
             FestivalView(festival: festival)
         }
