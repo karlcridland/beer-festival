@@ -14,6 +14,7 @@ struct HomeView: View {
     
     @State var search: String = ""
     @State private var isSearching = false
+    @State private var showsPopover: Bool = false
     
     init() {
         _viewModel = ObservedObject(initialValue: HomeViewModel())
@@ -28,17 +29,20 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         Button("Filter", systemImage: "line.3.horizontal.decrease") {
-                            
+                            showsPopover = true
                         }
                     }
                     ToolbarSpacer(placement: .bottomBar)
                     DefaultToolbarItem(kind: .search, placement: .bottomBar)
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HomeMenuView(destinations: [.profile, .settings], expand: true)
-                }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HomeMenuView(destinations: [.profile, .settings], expand: true)
+                    }
                 
-            }
+                }
+                .popover(isPresented: $showsPopover, content: {
+                    FilterView()
+                })
             
         }
         .background(Color(.systemBackground))

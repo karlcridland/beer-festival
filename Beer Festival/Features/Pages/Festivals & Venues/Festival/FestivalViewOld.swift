@@ -18,9 +18,7 @@ struct FestivalViewOld: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                
-            }
+            FestivalContentView(festival: viewModel.festival)
             .background(.backgroundYellow)
             .toolbar {
                 ToolbarItem(id: "tokens", placement: .bottomBar) {

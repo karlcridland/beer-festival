@@ -19,9 +19,7 @@ struct FestivalView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                
-            }
+            FestivalContentView(festival: viewModel.festival)
             .background(.backgroundYellow)
             .toolbar {
                 ToolbarItem {

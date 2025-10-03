@@ -15,4 +15,12 @@ class FestivalViewModel: ObservableObject {
         self.festival = festival
     }
     
+    func addToCalendar() {
+        
+    }
+    
+    func contactVenue() {
+        
+    }
+    
 }
