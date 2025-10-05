@@ -1,5 +1,5 @@
 //
-//  StampTests.swift
+//  TokenTests.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 01/08/2025.
@@ -8,45 +8,45 @@
 import XCTest
 @testable import Beer_Festival
 
-final class StampTests: XCTestCase {
+final class TokenTests: XCTestCase {
     
-    func testStampsStartAtTen() throws {
+    func testTokensStartAtTen() throws {
         let festival = MockFestival()
-        XCTAssertEqual(10, festival.stamps.remaining)
+        XCTAssertEqual(10, festival.tokens.remaining)
     }
     
-    func testAddStamp() throws {
+    func testAddToken() throws {
         let festival = MockFestival()
-        let originalRemaining: Int = festival.stamps.remaining
-        festival.stamps.add()
-        XCTAssertEqual(originalRemaining + 1, festival.stamps.remaining)
+        let originalRemaining: Int = festival.tokens.remaining
+        festival.tokens.add()
+        XCTAssertEqual(originalRemaining + 1, festival.tokens.remaining)
     }
     
-    func testAddFiveStamps() throws {
+    func testAddFiveTokens() throws {
         let festival = MockFestival()
-        let originalRemaining: Int = festival.stamps.remaining
-        festival.stamps.add(5)
-        XCTAssertEqual(originalRemaining + 5, festival.stamps.remaining)
+        let originalRemaining: Int = festival.tokens.remaining
+        festival.tokens.add(5)
+        XCTAssertEqual(originalRemaining + 5, festival.tokens.remaining)
     }
     
     func testTokenRedeemed() throws {
         let festival = MockFestival()
-        let originalRemaining: Int = festival.stamps.remaining
+        let originalRemaining: Int = festival.tokens.remaining
         do {
             let drink: Drink = Drink(name: "test", type: .lager)
-            try festival.stamps.redeemStamp(drink)
-            XCTAssertEqual(originalRemaining - 1, festival.stamps.remaining)
+            try festival.tokens.redeemToken(drink)
+            XCTAssertEqual(originalRemaining - 1, festival.tokens.remaining)
         }
         catch {
             XCTFail(error.localizedDescription)
         }
     }
     
-    func testRedeemFailsWhenNoStampsRemaining() throws {
-        let festival = MockFestival(stamps: 0)
+    func testRedeemFailsWhenNoTokensRemaining() throws {
+        let festival = MockFestival(tokens: 0)
         do {
             let drink: Drink = Drink(name: "test", type: .lager)
-            try festival.stamps.redeemStamp(drink)
+            try festival.tokens.redeemToken(drink)
             XCTFail("Should have thrown error as no tokens to redeem.")
         }
         catch {

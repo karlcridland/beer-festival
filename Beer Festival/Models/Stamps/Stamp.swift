@@ -1,5 +1,5 @@
 //
-//  Stamp.swift
+//  Token.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 31/07/2025.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Stamp: Hashable {
+struct Token: Hashable {
     
     let id: String
     let created: Date
-    var status: StampStatus
+    var status: TokenStatus
     var transactionId: String?
     
-    init(id: String = UUID().uuidString, created: Date = Date(), status: StampStatus = .unredeemed) {
+    init(id: String = UUID().uuidString, created: Date = Date(), status: TokenStatus = .unredeemed) {
         self.id = id
         self.created = created
         self.status = status

@@ -1,5 +1,5 @@
 //
-//  FestivalStampsButton.swift
+//  FestivalTokensButton.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 26/09/2025.
@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct FestivalStampsButton: View {
+struct FestivalTokensButton: View {
     
-    @ObservedObject var stamps: Stamps
+    @ObservedObject var tokens: Tokens
     let onClick: () -> Void
     
     var body: some View {
-        let stampCount: Int = stamps.remaining
+        let tokenCount: Int = tokens.remaining
         HStack {
             Button {
                 onClick()
             } label: {
                 Image(systemName: "ticket")
-                Text(stampCount > 0 ? "\(stampCount) stamp\(stampCount  == 1 ? "" : "s")" : "add stamps")
+                Text(tokenCount > 0 ? "\(tokenCount) token\(tokenCount  == 1 ? "" : "s")" : "add tokens")
                 Spacer()
             }
             Button("Scan Code", systemImage: "barcode.viewfinder") {
                 print("bing bong")
             }
-            .opacity(stampCount == 0 ? 0.3 : 1.0)
-            .disabled(stampCount == 0)
+            .opacity(tokenCount == 0 ? 0.3 : 1.0)
+            .disabled(tokenCount == 0)
         }
         .font(.body.bold())
         .padding(.horizontal, 10)

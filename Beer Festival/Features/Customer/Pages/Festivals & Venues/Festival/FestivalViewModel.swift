@@ -23,4 +23,12 @@ class FestivalViewModel: ObservableObject {
         
     }
     
+    var title: String {
+        festival.name
+    }
+    
+    var subtitle: String {
+        festival.dates.toDates
+    }
+    
 }

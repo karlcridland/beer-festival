@@ -6,5 +6,5 @@
 //
 
 struct FestivalPricing {
-    let entry, stamp: Int
+    let entry, token: Int
 }

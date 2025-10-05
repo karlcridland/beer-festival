@@ -12,9 +12,14 @@ struct Venue: Hashable {
     let address: String
     let city: String
     let postcode: String
+    var colorScheme: VenueColorScheme?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    var toString: String {
+        [name, address, city, postcode].joined(separator: ", ")
     }
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct FestivalViewOld: View {
     
     @ObservedObject var viewModel: FestivalViewModel
-    @State var showStampsPage: Bool = false
+    @State var showTokensPage: Bool = false
     
     init(festival: Festival) {
         _viewModel = ObservedObject(wrappedValue: FestivalViewModel(festival: festival))
@@ -22,15 +22,15 @@ struct FestivalViewOld: View {
             .background(.backgroundYellow)
             .toolbar {
                 ToolbarItem(id: "tokens", placement: .bottomBar) {
-                    FestivalStampsButton(stamps: viewModel.festival.stamps) {
-                        showStampsPage = true
-                        viewModel.festival.stamps.add()
+                    FestivalTokensButton(tokens: viewModel.festival.tokens) {
+                        showTokensPage = true
+                        viewModel.festival.tokens.add()
                     }
                 }
             }
         }
-        .navigationDestination(isPresented: $showStampsPage) {
-            StampsView(festival: viewModel.festival) {
+        .navigationDestination(isPresented: $showTokensPage) {
+            TokensView(festival: viewModel.festival) {
                 print("test")
             }
         }

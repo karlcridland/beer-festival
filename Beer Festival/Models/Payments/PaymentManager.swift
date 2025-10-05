@@ -7,7 +7,7 @@
 
 class PaymentManager {
     
-    func purchase(stamps: Int, value: Int, _ onComplete: @escaping () -> Void) {
+    func purchase(tokens: Int, value: Int, _ onComplete: @escaping () -> Void) {
         
     }
     

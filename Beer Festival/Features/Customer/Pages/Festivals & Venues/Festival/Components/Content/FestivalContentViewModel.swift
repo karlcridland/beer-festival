@@ -9,8 +9,10 @@ import Combine
 
 class FestivalContentViewModel: ObservableObject {
     
+    let festival: Festival
+    
     init(festival: Festival) {
-        
+        self.festival = festival
     }
     
 }

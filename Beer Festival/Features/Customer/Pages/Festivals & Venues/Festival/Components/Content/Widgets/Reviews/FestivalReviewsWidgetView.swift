@@ -1,34 +1,29 @@
 //
-//  FestivalContentView.swift
+//  FestivalReviewsWidgetView.swift
 //  Beer Festival
 //
-//  Created by Karl Cridland on 03/10/2025.
+//  Created by Karl Cridland on 05/10/2025.
 //
 
 import SwiftUI
 
-struct FestivalContentView: View {
+struct FestivalReviewsWidgetView: View {
     
-    @ObservedObject var viewModel: FestivalContentViewModel
+    var festival: Festival
     
     init(festival: Festival) {
-        _viewModel = ObservedObject(initialValue: FestivalContentViewModel(festival: festival))
+        self.festival = festival
     }
     
     var body: some View {
-        VStack {
-            ScrollView {
-                
-            }
+        FestivalWidgetView(title: "Reviews") {
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
 }
 
-
 #Preview {
-    let showHome: Bool = true
+    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
         if (showHome) {
             HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

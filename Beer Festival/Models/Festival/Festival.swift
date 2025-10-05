@@ -14,20 +14,20 @@ class Festival: FestivalProtocol, Hashable {
     let name: String
     let venue: Venue
     let coordinate: CLLocationCoordinate2D
-    let stamps: Stamps
+    let tokens: Tokens
     let pricing: FestivalPricing
     var attendance: FestivalAttendance
     let inventory: Inventory
     
     let dates: [FestivalDate]
     
-    init(id: String, name: String, venue: Venue, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], stamps: Stamps? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
+    init(id: String, name: String, venue: Venue, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], tokens: Tokens? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
         self.id = id
         self.name = name
         self.venue = venue
         self.coordinate = coordinate
         self.dates = dates
-        self.stamps = stamps ?? Stamps(id: id)
+        self.tokens = tokens ?? Tokens(id: id)
         self.pricing = pricing
         self.attendance = attendance
         self.inventory = inventory ?? Inventory(id: id)
@@ -38,7 +38,7 @@ class Festival: FestivalProtocol, Hashable {
     }
     
     func redeemToken(for drink: Drink) throws {
-        try stamps.redeemStamp(drink)
+        try tokens.redeemToken(drink)
     }
     
     func getDistance() -> CGFloat {
@@ -68,8 +68,9 @@ class Festival: FestivalProtocol, Hashable {
             let date = FestivalDate(day: i, month: 3, year: 2025)
             dates.append(date)
         }
-        let venue: Venue = Venue(id: UUID().uuidString, name: "The King's Head", address: "17 Pemberton Way", city: "Hadleigh", postcode: "PB17 1WY")
-        let festival: Festival = Festival(id: UUID().uuidString, name: "Test Festival", venue: venue, coordinate: .init(latitude: 0, longitude: 0), dates: dates, pricing: FestivalPricing(entry: 0, stamp: 1))
+        let colorScheme = VenueColorScheme(primary: "#00AFF2", accent: "#042B60")
+        let venue: Venue = Venue(id: UUID().uuidString, name: "Cherry Tree Inn", address: "73 Cumberland Street", city: "Woodbridge", postcode: "IP12 4AG", colorScheme: colorScheme)
+        let festival: Festival = Festival(id: UUID().uuidString, name: "Cherry Fest", venue: venue, coordinate: .init(latitude: 0, longitude: 0), dates: dates, pricing: FestivalPricing(entry: 0, token: 1))
         return festival
     }
     

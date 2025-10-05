@@ -29,6 +29,7 @@ enum DrinkType: String, CaseIterable {
     
     case cider = "Cider"
     
+    case softDrinks = "Soft Drink"
     case misc = "Miscellaneous"
     
 }

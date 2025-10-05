@@ -55,6 +55,7 @@
 				Models/Stamps/StampsProtocol.swift,
 				Models/Stamps/StampStatus.swift,
 				Models/Venue/Venue.swift,
+				Models/Venue/VenueColorScheme.swift,
 			);
 			target = 6D5256282E3A6D8F00420B2D /* Beer FestivalTests */;
 		};
