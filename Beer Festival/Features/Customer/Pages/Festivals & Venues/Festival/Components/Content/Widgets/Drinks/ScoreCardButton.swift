@@ -21,7 +21,7 @@ struct ScoreCardButton: View {
                 onClick()
             } label: {
                 let color = tint ?? Color(.label)
-                CircularProgressGapView(progress: 0.5, trackColor: color.opacity(0.2), progressColor: color)
+                CircularProgressGapView(progress: 0.2, trackColor: color.opacity(0.2), progressColor: color)
                     .frame(width: size, height: size)
             }
             .buttonStyle(.borderless)
@@ -100,6 +100,19 @@ struct CircularProgressGapView<GapContent: View>: View {
         .overlay(alignment: .center) {
             Image(systemName: "circle.grid.2x2.topleft.checkmark.filled")
                 .font(.title.weight(.semibold))
+        }
+    }
+}
+
+
+#Preview {
+    let showHome: Bool = !true
+    if #available(iOS 26.0, *) {
+        if (showHome) {
+            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
+        else {
+            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

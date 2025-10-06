@@ -11,12 +11,14 @@ struct Drink {
     
     let id: String
     let name: String
+    let brewery: Brewery
     let type: DrinkType
     let percentage: Double?
     
-    init(id: String = UUID().uuidString, name: String, type: DrinkType, percentage: Double? = nil) {
+    init(id: String = UUID().uuidString, name: String, brewery: Brewery, type: DrinkType, percentage: Double? = nil) {
         self.id = id
         self.name = name
+        self.brewery = brewery
         self.type = type
         self.percentage = percentage
     }
