@@ -23,7 +23,7 @@ struct FestivalInformationWidgetView: View {
     var body: some View {
         FestivalWidgetView {
             HStack(spacing: 12) {
-                FestivalMapView(location: self.festival.venue.toString, coordinates: CLLocationCoordinate2D(), size: height + (2 * padding), cornerRadius: cornerRadius)
+                FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius)
                 
                 VStack(alignment: .center, spacing: 8) {
                     QRCodeView(value: "testing 123", size: height, tint: .white)

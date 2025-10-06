@@ -70,7 +70,7 @@ class Festival: FestivalProtocol, Hashable {
         }
         let colorScheme = VenueColorScheme(primary: "#00AFF2", accent: "#042B60")
         let venue: Venue = Venue(id: UUID().uuidString, name: "Cherry Tree Inn", address: "73 Cumberland Street", city: "Woodbridge", postcode: "IP12 4AG", colorScheme: colorScheme)
-        let festival: Festival = Festival(id: UUID().uuidString, name: "Cherry Fest", venue: venue, coordinate: .init(latitude: 0, longitude: 0), dates: dates, pricing: FestivalPricing(entry: 0, token: 1))
+        let festival: Festival = Festival(id: UUID().uuidString, name: "Cherry Fest", venue: venue, coordinate: .init(latitude: 52.08993097257285, longitude: 1.3101622863092206), dates: dates, pricing: FestivalPricing(entry: 0, token: 1))
         return festival
     }
     

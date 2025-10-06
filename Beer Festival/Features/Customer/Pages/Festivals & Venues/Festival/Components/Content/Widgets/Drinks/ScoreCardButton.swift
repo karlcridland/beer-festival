@@ -12,6 +12,7 @@ struct ScoreCardButton: View {
     let drinkCount: Int
     let tint: Color?
     let background: Color
+    let size: CGFloat = 60
     
     var body: some View {
         VStack {
@@ -20,7 +21,7 @@ struct ScoreCardButton: View {
             } label: {
                 let color = tint ?? Color(.label)
                 CircularProgressGapView(progress: 0.5, trackColor: color.opacity(0.2), progressColor: color)
-                    .frame(width: 80, height: 80)
+                    .frame(width: size, height: size)
             }
             .buttonStyle(.borderless)
             Text("Score Card")
