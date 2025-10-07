@@ -36,6 +36,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Models/Drink/Drink.swift,
+				Models/Drink/DrinkExamples.swift,
 				Models/Drink/DrinkType.swift,
 				Models/Festival/Festival.swift,
 				Models/Festival/FestivalDate.swift,
