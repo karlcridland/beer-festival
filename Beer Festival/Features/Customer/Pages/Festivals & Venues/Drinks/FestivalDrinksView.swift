@@ -30,11 +30,14 @@ struct FestivalDrinksView: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
             }
+            .id(viewModel.refreshID)
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .searchable(text: $search, isPresented: $isSearching)
-            .onChange(of: search) { oldValue, newValue in
-                print(newValue)
+            .task(id: search) {
+                try? await Task.sleep(for: .milliseconds(250))
+                viewModel.searchQuery = search
+                viewModel.refresh()
             }
             .onSubmit(of: .search) {
                 isSearching = false
