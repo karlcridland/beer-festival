@@ -24,7 +24,11 @@ struct HomeView: View {
         NavigationStack {
             HomeFeedView()
                 .searchable(text: $search, isPresented: $isSearching)
+                .onChange(of: search, { oldValue, newValue in
+                    print(newValue)
+                })
                 .onSubmit(of: .search) {
+                    isSearching = false
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {

@@ -48,7 +48,11 @@ struct FestivalDrinksWidgetView: View {
             ScoreCardView(festival: festival)
         }
         .navigationDestination(item: $sortDrinksBy) { sortBy in
-            FestivalDrinksView(festival: festival, sortBy: sortBy)
+            if #available(iOS 26.0, *) {
+                FestivalDrinksView(festival: festival, sortBy: sortBy)
+            } else {
+                FestivalDrinksViewOld(festival: festival, sortBy: sortBy)
+            }
         }
     }
     
