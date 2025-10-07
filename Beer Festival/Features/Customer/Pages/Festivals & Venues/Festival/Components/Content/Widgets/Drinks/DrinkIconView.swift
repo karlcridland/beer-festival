@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DrinkIconView: View {
     
-    let drink: Drink
-    let imageName: String
+    let drink: Drink?
     let label: String
     let size: CGFloat = 80
     
@@ -19,9 +18,8 @@ struct DrinkIconView: View {
     
     let onClick: () -> Void
     
-    init(drink: Drink, imageName: String, label: String, systemName: String? = nil, background: Color? = nil, onClick: @escaping () -> Void) {
+    init(drink: Drink? = nil, label: String, systemName: String? = nil, background: Color? = nil, onClick: @escaping () -> Void) {
         self.drink = drink
-        self.imageName = imageName
         self.label = label
         self.systemName = systemName
         self.background = background
@@ -42,7 +40,7 @@ struct DrinkIconView: View {
                         .background(background)
                         .clipShape(.circle)
                 }
-                else {
+                else if let imageName = drink?.name.lowercased().replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "") {
                     Image(imageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

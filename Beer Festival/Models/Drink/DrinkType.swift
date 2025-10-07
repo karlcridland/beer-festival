@@ -10,6 +10,7 @@ enum DrinkType: String, CaseIterable {
     case lager = "Lager"
     
     case ale = "Ale"
+    case indianPaleAle = "Indian Pale Ale"
     case paleAle = "Pale Ale"
     case extraPaleAle = "Extra Pale Ale"
     case brownAle = "Brown Ale"

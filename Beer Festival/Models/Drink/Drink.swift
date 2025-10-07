@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Drink {
+struct Drink: Identifiable {
     
     let id: String
     let name: String

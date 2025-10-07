@@ -16,19 +16,56 @@ struct FestivalDrinksView: View {
     }
     
     var body: some View {
-        Text("Drinks\nSorted by: \(viewModel.sortBy.rawValue)")
+        ZStack {
+            Color(viewModel.festival.venue.colorScheme?.primary ?? .backgroundDefault).ignoresSafeArea()
+            List {
+                ForEach(viewModel.drinks){ drink in
+                    HStack {
+                        let imageName = drink.name.lowercased().replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
+                        Image(imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 60, height: 60)
+                            .padding(.trailing, 4)
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(drink.name)
+                                .font(.title3.bold())
+                            Text(drink.type.rawValue)
+                                .font(.caption.bold())
+                            Text(drink.brewery.name)
+                                .font(.caption.bold())
+                        }
+                        Spacer()
+                        if let p = drink.percentage {
+                            Text("\(p.oneDP)%")
+                                .font(.title3.bold())
+                                .padding(.trailing, 12)
+                        }
+                        
+                    }
+                    .foregroundStyle(.white)
+                    .padding(16)
+                    .background(viewModel.festival.venue.colorScheme?.accent)
+                    .cornerRadius(40)
+                }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color(.clear))
+            }
+            .scrollContentBackground(.hidden)
+        }
     }
     
 }
 
-class FestivalDrinksViewModel: ObservableObject {
+
+#Preview {
+    FestivalDrinksView(festival: Festival.example, sortBy: .alphabetical).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+}
+
+extension Double {
     
-    let festival: Festival
-    var sortBy: FestivalDrinkSort
-    
-    init(festival: Festival, sortBy: FestivalDrinkSort) {
-        self.festival = festival
-        self.sortBy = sortBy
+    var oneDP: String {
+        String(format: "%.1f", self)
     }
     
 }

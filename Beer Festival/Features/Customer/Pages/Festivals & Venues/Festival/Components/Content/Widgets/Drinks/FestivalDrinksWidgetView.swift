@@ -28,17 +28,16 @@ struct FestivalDrinksWidgetView: View {
                     }
                         .padding(.trailing, 12)
                     
-                    let drink = Drink(name: "Ease Up I.P.A.", type: .paleAle)
-                    DrinkIconView(drink: drink, imageName: "ghostship", label: "Popular") {
+                    DrinkIconView(drink: DrinkExamples.ghostShip, label: "Popular") {
                         sortDrinksBy = .popularity
                     }
-                    DrinkIconView(drink: drink, imageName: "dryhopped", label: "Best Score") {
+                    DrinkIconView(drink: DrinkExamples.dryHopped, label: "Best Score") {
                         sortDrinksBy = .bestScore
                     }
-                    DrinkIconView(drink: drink, imageName: "easeup", label: "Your Fav") {
+                    DrinkIconView(drink: DrinkExamples.easeUpIPA, label: "Your Fav") {
                         sortDrinksBy = .favourite
                     }
-                    DrinkIconView(drink: drink, imageName: "easeup", label: "View All", systemName: "checklist.unchecked", background: backgroundColor) {
+                    DrinkIconView(label: "View All", systemName: "checklist.unchecked", background: backgroundColor) {
                         sortDrinksBy = .alphabetical
                     }
                 }
