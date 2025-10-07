@@ -28,7 +28,7 @@ struct FestivalInformationWidgetView: View {
                 VStack(alignment: .center, spacing: 8) {
                     QRCodeView(value: "testing 123", size: height, tint: .white)
                         .padding(padding)
-                        .background((festival.venue.colorScheme?.accent ?? .black).opacity(0.8))
+                        .background(festival.venue.colorScheme.buttonAccent)
                         .cornerRadius(cornerRadius)
                         .disabled(festival.tokens.remaining == 0)
                     

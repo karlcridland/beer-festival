@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct FestivalGalleryWidgetView: View {
     
     var festival: Festival
+    
+    @State private var showImagePicker: Bool = false
+    @State private var showGallery: Bool = false
+    @State private var showImage: (any Hashable)?
+    
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var pickedImage: Image?
     
     var images: [ImageResource] {
         return []
@@ -25,26 +33,44 @@ struct FestivalGalleryWidgetView: View {
                 ForEach(images, id: \.self) { resource in
                     Image(resource)
                 }
-                FestivalGalleryView(systemName: "camera.fill", label: "Add photo", background: (festival.venue.colorScheme?.accent ?? .black).opacity(0.8)) {
-                    
+                PhotosPicker(selection: $selectedItem, matching: .images, preferredItemEncoding: .automatic) {
+                    FestivalGalleryIconView(systemName: "camera.fill", label: "Add photo", background: festival.venue.colorScheme.buttonAccent)
+                        .disabled(true)
                 }
-                FestivalGalleryView(systemName: "photo.on.rectangle.angled.fill", label: "View full gallery", background: (festival.venue.colorScheme?.accent ?? .black).opacity(0.8)) {
-                    
+                .buttonStyle(.borderless)
+                FestivalGalleryIconView(systemName: "photo.on.rectangle.angled.fill", label: "View full gallery", background: festival.venue.colorScheme.buttonAccent) {
+                    showGallery.toggle()
                 }
             }
+        }
+        .onChange(of: selectedItem) { oldValue, newValue in
+            guard let item = newValue else { return }
+            Task {
+                if let data = try? await item.loadTransferable(type: Data.self),
+                   let uiImage = UIImage(data: data) {
+                    pickedImage = Image(uiImage: uiImage)
+                    showImagePicker = false
+                }
+            }
+        }
+        .navigationDestination(isPresented: $showGallery) {
+            FestivalGalleryView()
         }
     }
     
 }
 
 #Preview {
-    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
+        NavigationStack {
             FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
+                .toolbarTitleMenu {
+                    VStack {
+                        Text("Testing 123")
+                        Text("Bing bong")
+                    }
+                }
         }
     }
 }

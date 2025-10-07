@@ -11,19 +11,32 @@ struct FestivalWidgetView<Content: View>: View {
 
     private let title: String?
     private let subview: Content
-
+    private let button: Content?
+    
+    init(title: String? = nil, @ViewBuilder content: () -> Content, @ViewBuilder button: () -> Content) {
+        self.title = title
+        self.subview = content()
+        self.button = button()
+    }
+    
     init(title: String? = nil, @ViewBuilder content: () -> Content) {
         self.title = title
         self.subview = content()
+        self.button = nil
     }
 
     var body: some View {
         VStack(alignment: .leading) {
             if let title = title {
-                Text(title)
-                    .font(.title2.bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 12)
+                HStack(alignment: .center) {
+                    Text(title)
+                        .font(.title2.bold())
+                    Spacer()
+                    if let button = button {
+                        button
+                    }
+                }
+                .padding(.bottom, 12)
             }
             subview
         }

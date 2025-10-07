@@ -1,5 +1,5 @@
 //
-//  FestivalGalleryView.swift
+//  FestivalGalleryIconView.swift
 //  Beer Festival
 //
 //  Created by Karl Cridland on 05/10/2025.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct FestivalGalleryView: View {
+struct FestivalGalleryIconView: View {
     
     let imageResource: ImageResource?
     let systemName: String?
     let label: String
     let background: Color
-    let onClick: () -> Void
+    let onClick: (() -> Void)?
     
     init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, background: Color = .clear, onClick: @escaping () -> Void) {
         self.imageResource = imageResource
@@ -23,9 +23,17 @@ struct FestivalGalleryView: View {
         self.onClick = onClick
     }
     
+    init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, background: Color = .clear) {
+        self.imageResource = imageResource
+        self.systemName = systemName
+        self.label = label
+        self.background = background
+        self.onClick = nil
+    }
+    
     var body: some View {
         Button {
-            onClick()
+            onClick?()
         } label: {
             if let systemName = systemName {
                 Image(systemName: systemName)

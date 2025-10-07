@@ -10,8 +10,7 @@ import SwiftUI
 struct ScoreCardButton: View {
     
     let drinkCount: Int
-    let tint: Color?
-    let background: Color
+    let tint: Color
     let size: CGFloat = 60
     let onClick: () -> Void
     
@@ -20,8 +19,7 @@ struct ScoreCardButton: View {
             Button {
                 onClick()
             } label: {
-                let color = tint ?? Color(.label)
-                CircularProgressGapView(progress: 0.2, trackColor: color.opacity(0.2), progressColor: color)
+                CircularProgressGapView(progress: 0.2, trackColor: tint.opacity(0.2), progressColor: tint)
                     .frame(width: size, height: size)
             }
             .buttonStyle(.borderless)

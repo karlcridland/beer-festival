@@ -20,7 +20,7 @@ struct FestivalDrinksViewOld: View {
     
     var body: some View {
         ZStack {
-            Color(viewModel.festival.venue.colorScheme?.primary ?? .backgroundDefault).ignoresSafeArea()
+            Color(viewModel.festival.venue.colorScheme.primary).ignoresSafeArea()
             List {
                 ForEach(viewModel.drinks){ drink in
                     HStack {
@@ -48,7 +48,7 @@ struct FestivalDrinksViewOld: View {
                     }
                     .foregroundStyle(.white)
                     .padding(16)
-                    .background(viewModel.festival.venue.colorScheme?.accent)
+                    .background(viewModel.festival.venue.colorScheme.accent)
                     .cornerRadius(40)
                 }
                 .listRowSeparator(.hidden)

@@ -21,10 +21,10 @@ struct FestivalDrinksView: View {
     
     var body: some View {
         ZStack {
-            Color(viewModel.festival.venue.colorScheme?.primary ?? .backgroundDefault).ignoresSafeArea()
+            Color(viewModel.festival.venue.colorScheme.primary).ignoresSafeArea()
             List {
                 ForEach(viewModel.drinks) { drink in
-                    DrinkThumbnailView(drink: drink, backgroundColor: viewModel.festival.venue.colorScheme?.accent)
+                    DrinkThumbnailView(drink: drink, backgroundColor: viewModel.festival.venue.colorScheme.accent)
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)

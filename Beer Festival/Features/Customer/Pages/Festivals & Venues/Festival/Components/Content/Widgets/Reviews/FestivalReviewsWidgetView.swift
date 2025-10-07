@@ -16,8 +16,24 @@ struct FestivalReviewsWidgetView: View {
     }
     
     var body: some View {
-        FestivalWidgetView(title: "Reviews") {
-        }
+        FestivalWidgetView(title: "Reviews", content: {
+            AnyView(
+                VStack(alignment: .center) {
+                    Text("No reviews yet. Be the first!")
+                        .font(.body.weight(.semibold))
+                        .padding()
+                }
+                .frame(maxWidth: .infinity)
+            )
+        }, button: {
+            AnyView(
+                Button{
+                } label: {
+                    Label("review", systemImage: "plus")
+                        .font(Font.body.weight(.semibold))
+                }
+            )
+        })
     }
     
 }
@@ -33,3 +49,4 @@ struct FestivalReviewsWidgetView: View {
         }
     }
 }
+

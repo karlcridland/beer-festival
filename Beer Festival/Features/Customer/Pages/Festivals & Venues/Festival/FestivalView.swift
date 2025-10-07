@@ -20,7 +20,7 @@ struct FestivalView: View {
     var body: some View {
         VStack {
             FestivalContentView(festival: viewModel.festival)
-                .background(viewModel.festival.venue.colorScheme?.primary ?? .backgroundDefault)
+                .background(viewModel.festival.venue.colorScheme.primary)
                 .navigationTitle(viewModel.title)
                 .navigationSubtitle(viewModel.subtitle)
                 .toolbar {
@@ -44,7 +44,7 @@ struct FestivalView: View {
                         }
                     }
                 }
-                .tint(viewModel.festival.venue.colorScheme?.accent ?? .accent)
+                .tint(viewModel.festival.venue.colorScheme.accent)
                 .buttonStyle(.glassProminent)
         }
         .navigationDestination(isPresented: $showTokensPage) {

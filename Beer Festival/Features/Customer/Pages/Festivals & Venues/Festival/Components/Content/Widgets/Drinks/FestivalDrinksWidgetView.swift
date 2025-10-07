@@ -19,11 +19,11 @@ struct FestivalDrinksWidgetView: View {
     }
     
     var body: some View {
-        let backgroundColor: Color = (festival.venue.colorScheme?.accent ?? .black).opacity(0.8)
+        let backgroundColor: Color = festival.venue.colorScheme.buttonAccent
         FestivalWidgetView(title: "Drinks") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    ScoreCardButton(drinkCount: 0, tint: festival.venue.colorScheme?.accent ?? Color(.label), background: backgroundColor) {
+                    ScoreCardButton(drinkCount: 0, tint: backgroundColor) {
                         showScoreCard = true
                     }
                         .padding(.trailing, 12)

@@ -10,11 +10,22 @@ import SwiftUI
 struct VenueColorScheme: Hashable {
     
     let id: String = UUID().uuidString
-    let primary, accent: Color
+    let primary, accent, primaryText, accentText: Color
     
-    init(primary: String, accent: String) {
+    enum TextColor: String {
+        case white = "ffffff"
+        case black = "000000"
+    }
+    
+    init(primary: String, accent: String, primaryText: TextColor = .white, accentText: TextColor = .white) {
         self.primary = Color(hex: primary)
         self.accent = Color(hex: accent)
+        self.primaryText = Color(hex: primaryText.rawValue)
+        self.accentText = Color(hex: accentText.rawValue)
+    }
+    
+    var buttonAccent: Color {
+        return accent.opacity(0.8)
     }
     
     func hash(into hasher: inout Hasher) {
