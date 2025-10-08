@@ -11,6 +11,8 @@ struct FestivalReviewsWidgetView: View {
     
     var festival: Festival
     
+    @State private var showNewReview: Bool = false
+    
     init(festival: Festival) {
         self.festival = festival
     }
@@ -28,24 +30,34 @@ struct FestivalReviewsWidgetView: View {
         }, button: {
             AnyView(
                 Button{
+                    showNewReview = true
                 } label: {
-                    Label("review", systemImage: "plus")
-                        .font(Font.body.weight(.semibold))
+                    HStack {
+                        Text("review")
+                        Image(systemName: "plus")
+                    }
+                    .font(.body.weight(.semibold))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .padding(.leading, 5)
+                    .background(festival.venue.colorScheme.buttonAccent)
+                    .cornerRadius(50)
                 }
+                .buttonStyle(.borderless)
             )
         })
+        .popover(isPresented: $showNewReview) {
+            FestivalEditReview()
+        }
     }
     
 }
 
 #Preview {
-    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
+        NavigationStack {
             FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
         }
     }
 }
