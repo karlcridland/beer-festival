@@ -11,19 +11,32 @@ import CoreImage.CIFilterBuiltins
 struct QRCodeView: View {
     
     let value: String
-    let size: CGFloat
+    let size: CGFloat?
     let tint: Color?
 
     private let context = CIContext()
     private let qrFilter = CIFilter.qrCodeGenerator()
     private let colorFilter = CIFilter.falseColor()
+    
+    init(value: String, size: CGFloat? = nil, tint: Color? = .black) {
+        self.value = value
+        self.size = size
+        self.tint = tint
+    }
 
     var body: some View {
         if let image = generateQRCode(from: value) {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: size, height: size)
+            if let size = self.size {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: size, height: size)
+            }
+            else {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            }
         } else {
             Image(systemName: "xmark.circle")
                 .symbolRenderingMode(.multicolor)

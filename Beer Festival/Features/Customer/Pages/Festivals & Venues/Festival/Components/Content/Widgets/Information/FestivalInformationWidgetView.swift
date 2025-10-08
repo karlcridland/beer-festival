@@ -16,6 +16,8 @@ struct FestivalInformationWidgetView: View {
     private let padding: CGFloat = 12
     private let cornerRadius: CGFloat = 24
     
+    @State var fullScreen: Bool = false
+    
     init(festival: Festival) {
         self.festival = festival
     }
@@ -24,13 +26,17 @@ struct FestivalInformationWidgetView: View {
         FestivalWidgetView {
             HStack(spacing: 12) {
                 FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius)
-                
                 VStack(alignment: .center, spacing: 8) {
-                    QRCodeView(value: "testing 123", size: height, tint: .white)
-                        .padding(padding)
-                        .background(festival.venue.colorScheme.buttonAccent)
-                        .cornerRadius(cornerRadius)
-                        .disabled(festival.tokens.remaining == 0)
+                    Button {
+                        fullScreen = true
+                    } label: {
+                        QRCodeView(value: qr_code, size: height, tint: .white)
+                            .padding(padding)
+                            .background(festival.venue.colorScheme.buttonAccent)
+                            .cornerRadius(cornerRadius)
+                            .disabled(festival.tokens.remaining == 0)
+                    }
+                    .buttonStyle(.borderless)
                     
                     Text("Scan to redeem your tokens")
                         .frame(maxWidth: height + (2 * padding))
@@ -40,6 +46,22 @@ struct FestivalInformationWidgetView: View {
                 }
             }
         }
+        .popover(isPresented: $fullScreen) {
+            FestivalUserQRCodeView(value: qr_code, colorScheme: festival.venue.colorScheme)
+        }
+    }
+    
+    var qr_code: String {
+        return "testing 123"
     }
     
 }
+
+#Preview {
+    if #available(iOS 26.0, *) {
+        NavigationStack {
+            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
+    }
+}
+

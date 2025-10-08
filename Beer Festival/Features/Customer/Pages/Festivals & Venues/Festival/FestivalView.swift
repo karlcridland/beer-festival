@@ -57,12 +57,8 @@ struct FestivalView: View {
 }
 
 #Preview {
-    let showHome: Bool = !false
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
+        NavigationStack {
             FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
