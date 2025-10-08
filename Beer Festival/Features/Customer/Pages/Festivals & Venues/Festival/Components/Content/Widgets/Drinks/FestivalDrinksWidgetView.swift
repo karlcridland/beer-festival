@@ -22,7 +22,7 @@ struct FestivalDrinksWidgetView: View {
         let backgroundColor: Color = festival.venue.colorScheme.buttonAccent
         FestivalWidgetView(title: "Drinks") {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
+                HStack(alignment: .bottom, spacing: 0) {
                     ScoreCardButton(drinkCount: 0, tint: backgroundColor) {
                         showScoreCard = true
                     }
@@ -59,13 +59,10 @@ struct FestivalDrinksWidgetView: View {
 }
 
 #Preview {
-    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
+        NavigationStack {
             FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
         }
     }
 }

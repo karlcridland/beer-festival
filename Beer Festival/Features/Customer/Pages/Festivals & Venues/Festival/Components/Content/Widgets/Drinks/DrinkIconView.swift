@@ -47,6 +47,7 @@ struct DrinkIconView: View {
                 }
             }
             .buttonStyle(.borderless)
+            Spacer()
             Text(label)
                 .font(.caption.weight(.semibold))
                 .lineLimit(0)

@@ -26,6 +26,7 @@ struct FestivalInformationWidgetView: View {
         FestivalWidgetView {
             HStack(spacing: 12) {
                 FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius)
+                
                 VStack(alignment: .center, spacing: 8) {
                     Button {
                         fullScreen = true

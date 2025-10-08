@@ -31,7 +31,7 @@ struct FestivalMapView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Map(position: $position)
                 .mapStyle(.standard)
                 .ignoresSafeArea()
