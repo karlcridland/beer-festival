@@ -32,6 +32,9 @@ struct FestivalView: View {
                             Button("Contact", systemImage: "envelope") {
                                 
                             }
+                            Button("Add to wallet", systemImage: "wallet.pass") {
+                                
+                            }
                         } label: {
                             Label("Options", systemImage: "ellipsis")
                         }
