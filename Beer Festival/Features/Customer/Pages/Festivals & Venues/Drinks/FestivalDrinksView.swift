@@ -24,7 +24,7 @@ struct FestivalDrinksView: View {
             Color(viewModel.festival.venue.colorScheme.primary).ignoresSafeArea()
             List {
                 ForEach(viewModel.drinks) { drink in
-                    DrinkThumbnailView(drink: drink, backgroundColor: viewModel.festival.venue.colorScheme.accent)
+                    DrinkThumbnailView(drink: drink, textColor: viewModel.festival.venue.colorScheme.accentText, backgroundColor: viewModel.festival.venue.colorScheme.accent)
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
@@ -55,42 +55,6 @@ struct FestivalDrinksView: View {
         }
     }
     
-}
-
-struct DrinkThumbnailView: View {
-    
-    let drink: Drink
-    let backgroundColor: Color?
-    
-    var body: some View {
-        HStack {
-            let imageName = drink.name.lowercased().replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
-            Image(imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 60, height: 60)
-                .padding(.trailing, 4)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(drink.name)
-                    .font(.title3.bold())
-                Text(drink.type.rawValue)
-                    .font(.caption.bold())
-                Text(drink.brewery.name)
-                    .font(.caption.bold())
-            }
-            Spacer()
-            if let p = drink.percentage {
-                Text("\(p.oneDP)%")
-                    .font(.title3.bold())
-                    .padding(.trailing, 12)
-            }
-            
-        }
-        .foregroundStyle(.white)
-        .padding(16)
-        .background(backgroundColor)
-        .cornerRadius(40)
-    }
 }
 
 
