@@ -22,7 +22,7 @@ struct FestivalViewOld: View {
             .background(.backgroundYellow)
             .toolbar {
                 ToolbarItem(id: "tokens", placement: .bottomBar) {
-                    FestivalTokensButton(tokens: viewModel.festival.tokens) {
+                    FestivalTokensButton(tokens: viewModel.festival.tokens, textColor: viewModel.festival.venue.colorScheme.accentText) {
                         showTokensPage = true
                         viewModel.festival.tokens.add()
                     }

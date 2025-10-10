@@ -10,6 +10,7 @@ import SwiftUI
 struct FestivalTokensButton: View {
     
     @ObservedObject var tokens: Tokens
+    let textColor: Color
     let onClick: () -> Void
     
     var body: some View {
@@ -19,12 +20,15 @@ struct FestivalTokensButton: View {
                 onClick()
             } label: {
                 Image(systemName: "ticket")
+                    .foregroundStyle(textColor)
                 Text(tokenCount > 0 ? "\(tokenCount) token\(tokenCount  == 1 ? "" : "s")" : "add tokens")
+                    .foregroundStyle(textColor)
                 Spacer()
             }
             Button("Scan Code", systemImage: "barcode.viewfinder") {
                 print("bing bong")
             }
+            .foregroundStyle(textColor)
             .opacity(tokenCount == 0 ? 0.3 : 1.0)
             .disabled(tokenCount == 0)
         }
@@ -36,6 +40,9 @@ struct FestivalTokensButton: View {
 
 #Preview {
     if #available(iOS 26.0, *) {
-        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationStack {
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
+        }
     }
 }

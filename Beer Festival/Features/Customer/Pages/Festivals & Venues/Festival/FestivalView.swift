@@ -21,9 +21,10 @@ struct FestivalView: View {
         VStack {
             FestivalContentView(festival: viewModel.festival)
                 .background(viewModel.festival.venue.colorScheme.primary)
-                .navigationTitle(viewModel.title)
-                .navigationSubtitle(viewModel.subtitle)
                 .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        FestivalHeaderView(title: viewModel.title, subtitle: viewModel.subtitle, textColor: viewModel.festival.venue.colorScheme.primaryText)
+                    }
                     ToolbarItem {
                         Menu {
                             Button("Add to calendar", systemImage: "calendar") {
@@ -42,7 +43,7 @@ struct FestivalView: View {
                 }
                 .toolbar {
                     ToolbarItem(id: "tokens", placement: .bottomBar) {
-                        FestivalTokensButton(tokens: viewModel.festival.tokens) {
+                        FestivalTokensButton(tokens: viewModel.festival.tokens, textColor: viewModel.festival.venue.colorScheme.accentText) {
                             showTokensPage = true
                         }
                     }
