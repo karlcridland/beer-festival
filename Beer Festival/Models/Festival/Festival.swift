@@ -21,6 +21,8 @@ class Festival: FestivalProtocol, Hashable {
     
     let dates: [FestivalDate]
     
+    var recentReviews: [Review] = []
+    
     init(id: String, name: String, venue: Venue, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], tokens: Tokens? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
         self.id = id
         self.name = name
@@ -31,6 +33,15 @@ class Festival: FestivalProtocol, Hashable {
         self.pricing = pricing
         self.attendance = attendance
         self.inventory = inventory ?? Inventory(id: id)
+        self.checkForReviews()
+    }
+    
+    func checkForReviews() {
+        
+    }
+    
+    func stopCheckingForReviews() {
+        
     }
     
     internal func updateAttendance(to attendance: FestivalAttendance) {
@@ -60,6 +71,10 @@ class Festival: FestivalProtocol, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    deinit {
+        stopCheckingForReviews()
     }
     
 }

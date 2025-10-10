@@ -40,6 +40,7 @@
 				Models/Drink/DrinkType.swift,
 				Models/Festival/Festival.swift,
 				Models/Festival/FestivalDate.swift,
+				Models/Festival/FestivalDates.swift,
 				Models/Festival/FestivalExamples.swift,
 				Models/Festival/FestivalPricing.swift,
 				Models/Festival/FestivalProtocol.swift,

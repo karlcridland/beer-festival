@@ -38,6 +38,7 @@ class FestivalExamples {
         let colorScheme = VenueColorScheme(primary: "#154734", accent: "#fff", accentText: .black)
         let venue: Venue = Venue(id: UUID().uuidString, name: "Fox Inn", address: "1 Eastgate Street", city: "Bury St. Edmunds", postcode: "IP33 1XX", colorScheme: colorScheme)
         let festival: Festival = Festival(id: UUID().uuidString, name: "Greene King Beer Festival", venue: venue, coordinate: .init(latitude: 52.246615357779, longitude: 0.7200961377029919), dates: dates, pricing: FestivalPricing(entry: 0, token: 1))
+        festival.attendance = .attending
         return festival
     }()
     
@@ -53,4 +54,9 @@ class FestivalExamples {
         return festival
     }()
     
+}
+
+class ReviewExamples {
+    static let a = Review(date: Date(), name: "John Smith", message: "Best festival ever", rating: 5)
+    static let b = Review(date: Date(), name: "Kevin Applewood", message: "Worst festival ever", rating: 1)
 }

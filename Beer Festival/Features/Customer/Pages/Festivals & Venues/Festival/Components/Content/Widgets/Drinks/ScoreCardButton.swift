@@ -23,7 +23,7 @@ struct ScoreCardButton: View {
                     .frame(width: size, height: size)
             }
             .buttonStyle(.borderless)
-            Text("Score Card")
+            Text("View All")
                 .foregroundStyle(textColor)
                 .font(.caption.weight(.semibold))
         }
@@ -99,9 +99,9 @@ struct CircularProgressGapView<GapContent: View>: View {
         }
         .aspectRatio(1, contentMode: .fit)
         .overlay(alignment: .center) {
-            Image(systemName: "circle.grid.2x2.topleft.checkmark.filled")
+            Image(systemName: "checklist")
                 .foregroundStyle(iconColor)
-                .font(.title.weight(.semibold))
+                .font(.title2.weight(.semibold))
         }
     }
 }

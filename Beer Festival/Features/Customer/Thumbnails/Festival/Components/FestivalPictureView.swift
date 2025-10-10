@@ -10,7 +10,15 @@ import SwiftUI
 struct FestivalPictureView: View {
     
     let id: String
-    let diameter: CGFloat = 64
+    let cornerRadius: CGFloat
+    let diameter: CGFloat = 80
+    let ratio: CGFloat
+    
+    init(id: String, cornerRadius: CGFloat = 32, ratio: CGFloat = 1) {
+        self.id = id
+        self.cornerRadius = cornerRadius
+        self.ratio = ratio
+    }
     
     // Provide a Firebase Storage download URL to `imageURL` when available.
     // Example: FestivalPictureView(id: festival.id, imageURL: URL(string: "https://..."))
@@ -18,7 +26,6 @@ struct FestivalPictureView: View {
     
     private var placeholder: some View {
         ZStack {
-            Circle().fill(.secondary)
             Image("festival_placeholder")
                 .font(.system(size: diameter * 0.4, weight: .regular))
                 .foregroundStyle(.white.opacity(0.85))
@@ -44,15 +51,14 @@ struct FestivalPictureView: View {
                     }
                 }
                 .frame(width: diameter, height: diameter)
-                .clipShape(Circle())
             } else {
                 placeholder
-                    .frame(width: diameter, height: diameter)
-                    .background(Circle().fill(.secondary))
-                    .clipShape(Circle())
+                    .frame(width: diameter * ratio, height: diameter)
             }
         }
         .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+        .clipShape(.rect)
+        .cornerRadius(cornerRadius)
     }
     
 }

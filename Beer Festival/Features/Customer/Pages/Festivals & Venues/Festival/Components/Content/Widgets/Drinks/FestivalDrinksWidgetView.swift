@@ -26,9 +26,9 @@ struct FestivalDrinksWidgetView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .bottom, spacing: 0) {
                     ScoreCardButton(drinkCount: 0, tint: backgroundColor, textColor: primary) {
-                        showScoreCard = true
+                        sortDrinksBy = .alphabetical
                     }
-                        .padding(.trailing, 12)
+                    .padding(.trailing, 12)
                     
                     DrinkIconView(drink: DrinkExamples.ghostShip, label: "Popular", tint: accent, textColor: primary) {
                         sortDrinksBy = .popularity
@@ -38,9 +38,6 @@ struct FestivalDrinksWidgetView: View {
                     }
                     DrinkIconView(drink: DrinkExamples.easeUpIPA, label: "Favourite", tint: accent, textColor: primary) {
                         sortDrinksBy = .favourite
-                    }
-                    DrinkIconView(label: "View All", systemName: "checklist.unchecked", tint: accent, textColor: primary, background: backgroundColor) {
-                        sortDrinksBy = .alphabetical
                     }
                 }
             }

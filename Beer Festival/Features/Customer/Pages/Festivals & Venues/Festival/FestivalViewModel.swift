@@ -28,7 +28,7 @@ class FestivalViewModel: ObservableObject {
     }
     
     var subtitle: String {
-        festival.dates.toDates
+        festival.dates.description
     }
     
 }
