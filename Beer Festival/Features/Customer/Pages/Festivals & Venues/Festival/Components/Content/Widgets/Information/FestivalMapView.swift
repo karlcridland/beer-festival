@@ -60,8 +60,8 @@ struct FestivalMapView: View {
     }
     
     func openExternalMap() {
-        let address: String = [venueName, location].joined(separator: " ")
-        if let encoded = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        let address: String = [venueName, location].joined(separator: ", ")
+        if let encoded = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
            let url = URL(string: "http://maps.apple.com/?address=\(encoded)") {
             UIApplication.shared.open(url)
         }

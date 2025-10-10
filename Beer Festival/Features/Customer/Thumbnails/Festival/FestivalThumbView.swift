@@ -13,20 +13,24 @@ struct FestivalThumbView: View, Hashable {
     @State var showFestivalPage: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(festival.name)
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            HStack {
-                VStack(alignment: .center) {
-                    FestivalPictureView(id: festival.id)
-                    
-                    Text("\(festival.venue.city)\n\(festival.dates.toDates)")
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-                }
-                VStack {
+        Button {
+            showFestivalPage = true
+        } label: {
+            VStack(alignment: .leading) {
+                Text(festival.name)
+                    .font(.title3.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack {
+                    VStack(alignment: .center) {
+                        FestivalPictureView(id: festival.id)
+                        
+                        Text("\(festival.venue.city)\n\(festival.dates.toDates)")
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                    }
+                    VStack {
+                    }
                 }
             }
         }
@@ -44,9 +48,6 @@ struct FestivalThumbView: View, Hashable {
             } else {
                 FestivalViewOld(festival: festival)
             }
-        }
-        .onTapGesture {
-            showFestivalPage = true
         }
     }
     
