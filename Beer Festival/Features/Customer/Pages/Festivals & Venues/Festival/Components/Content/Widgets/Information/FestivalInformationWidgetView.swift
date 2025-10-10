@@ -23,10 +23,11 @@ struct FestivalInformationWidgetView: View {
     }
     
     var body: some View {
-        let primaryText: Color = festival.venue.colorScheme.primaryText
-        FestivalWidgetView(textColor: primaryText) {
+        let textColor: Color = festival.venue.colorScheme.primaryText
+        let tint: Color = festival.venue.colorScheme.primary
+        FestivalWidgetView(textColor: textColor) {
             HStack(spacing: 12) {
-                FestivalMapView(location: self.festival.venue.toString, venueName: festival.venue.name, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius, textColor: primaryText)
+                FestivalMapView(location: self.festival.venue.toString, venueName: festival.venue.name, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius, tint: tint, textColor: textColor)
                 
                 VStack(alignment: .center, spacing: 8) {
                     Button {
@@ -41,7 +42,7 @@ struct FestivalInformationWidgetView: View {
                     .buttonStyle(.borderless)
                     
                     Text("Scan to redeem your tokens")
-                        .foregroundStyle(primaryText)
+                        .foregroundStyle(textColor)
                         .frame(maxWidth: height + (2 * padding))
                         .font(.caption.weight(.semibold))
                         .multilineTextAlignment(.center)

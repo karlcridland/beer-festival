@@ -13,16 +13,17 @@ struct FestivalMapView: View {
     private let coordinates: CLLocationCoordinate2D
     private let location, venueName: String
     private let size, cornerRadius: CGFloat
-    private let textColor: Color
+    private let tint, textColor: Color
     
     @State private var position: MapCameraPosition
     
-    init(location: String, venueName: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat, textColor: Color) {
+    init(location: String, venueName: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat, tint: Color, textColor: Color) {
         self.location = location
         self.venueName = venueName
         self.coordinates = coordinates
         self.size = size
         self.cornerRadius = cornerRadius
+        self.tint = tint
         self.textColor = textColor
         
         _position = State(initialValue: .region(
@@ -38,12 +39,15 @@ struct FestivalMapView: View {
             Button {
                 openExternalMap()
             } label: {
-                Map(position: $position)
-                    .mapStyle(.standard)
-                    .disabled(true)
-                    .ignoresSafeArea()
-                    .frame(height: size)
-                    .cornerRadius(cornerRadius)
+                Map(position: $position) {
+                        Marker(venueName, coordinate: coordinates)
+                }
+                .tint(tint)
+                .mapStyle(.standard)
+                .disabled(true)
+                .ignoresSafeArea()
+                .frame(height: size)
+                .cornerRadius(cornerRadius)
             }
             .buttonStyle(.borderless)
             Text(location)
@@ -73,4 +77,3 @@ struct FestivalMapView: View {
         }
     }
 }
-
