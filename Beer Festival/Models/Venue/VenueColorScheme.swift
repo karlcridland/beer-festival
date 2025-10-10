@@ -25,7 +25,7 @@ struct VenueColorScheme: Hashable {
     }
     
     var buttonAccent: Color {
-        return accent.opacity(0.8)
+        return accent
     }
     
     func hash(into hasher: inout Hasher) {

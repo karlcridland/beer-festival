@@ -10,17 +10,20 @@ import SwiftUI
 struct FestivalWidgetView<Content: View>: View {
 
     private let title: String?
+    private let textColor: Color
     private let subview: Content
     private let button: Content?
     
-    init(title: String? = nil, @ViewBuilder content: () -> Content, @ViewBuilder button: () -> Content) {
+    init(title: String? = nil, textColor: Color, @ViewBuilder content: () -> Content, @ViewBuilder button: () -> Content) {
         self.title = title
+        self.textColor = textColor
         self.subview = content()
         self.button = button()
     }
     
-    init(title: String? = nil, @ViewBuilder content: () -> Content) {
+    init(title: String? = nil, textColor: Color, @ViewBuilder content: () -> Content) {
         self.title = title
+        self.textColor = textColor
         self.subview = content()
         self.button = nil
     }
@@ -31,6 +34,7 @@ struct FestivalWidgetView<Content: View>: View {
                 HStack(alignment: .center) {
                     Text(title)
                         .font(.title2.bold())
+                        .foregroundStyle(textColor)
                     Spacer()
                     if let button = button {
                         button

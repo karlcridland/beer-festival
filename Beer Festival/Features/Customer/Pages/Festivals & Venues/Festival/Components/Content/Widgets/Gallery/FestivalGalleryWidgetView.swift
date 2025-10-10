@@ -28,17 +28,17 @@ struct FestivalGalleryWidgetView: View {
     }
     
     var body: some View {
-        FestivalWidgetView(title: "Gallery") {
+        FestivalWidgetView(title: "Gallery", textColor: festival.venue.colorScheme.primaryText) {
             HStack {
                 ForEach(images, id: \.self) { resource in
                     Image(resource)
                 }
                 PhotosPicker(selection: $selectedItem, matching: .images, preferredItemEncoding: .automatic) {
-                    FestivalGalleryIconView(systemName: "camera.fill", label: "Add photo", background: festival.venue.colorScheme.buttonAccent)
+                    FestivalGalleryIconView(systemName: "camera.fill", label: "Add photo", tint: festival.venue.colorScheme.accentText, background: festival.venue.colorScheme.buttonAccent)
                         .disabled(true)
                 }
                 .buttonStyle(.borderless)
-                FestivalGalleryIconView(systemName: "photo.on.rectangle.angled.fill", label: "View full gallery", background: festival.venue.colorScheme.buttonAccent) {
+                FestivalGalleryIconView(systemName: "photo.on.rectangle.angled.fill", label: "View full gallery", tint: festival.venue.colorScheme.accentText, background: festival.venue.colorScheme.buttonAccent) {
                     showGallery.toggle()
                 }
             }
@@ -63,14 +63,8 @@ struct FestivalGalleryWidgetView: View {
 #Preview {
     if #available(iOS 26.0, *) {
         NavigationStack {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .toolbarTitleDisplayMode(.inline)
-                .toolbarTitleMenu {
-                    VStack {
-                        Text("Testing 123")
-                        Text("Bing bong")
-                    }
-                }
         }
     }
 }

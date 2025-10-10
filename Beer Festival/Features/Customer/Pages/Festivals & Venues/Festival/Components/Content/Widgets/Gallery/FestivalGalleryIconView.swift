@@ -12,21 +12,24 @@ struct FestivalGalleryIconView: View {
     let imageResource: ImageResource?
     let systemName: String?
     let label: String
+    let tint: Color
     let background: Color
     let onClick: (() -> Void)?
     
-    init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, background: Color = .clear, onClick: @escaping () -> Void) {
+    init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, tint: Color, background: Color = .clear, onClick: @escaping () -> Void) {
         self.imageResource = imageResource
         self.systemName = systemName
         self.label = label
+        self.tint = tint
         self.background = background
         self.onClick = onClick
     }
     
-    init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, background: Color = .clear) {
+    init(imageResource: ImageResource? = nil, systemName: String? = nil, label: String, tint: Color, background: Color = .clear) {
         self.imageResource = imageResource
         self.systemName = systemName
         self.label = label
+        self.tint = tint
         self.background = background
         self.onClick = nil
     }
@@ -38,6 +41,7 @@ struct FestivalGalleryIconView: View {
             if let systemName = systemName {
                 Image(systemName: systemName)
                     .font(.title2.weight(.semibold))
+                    .foregroundStyle(tint)
             } else if let imageResource = imageResource {
                 Image(imageResource)
             } else {

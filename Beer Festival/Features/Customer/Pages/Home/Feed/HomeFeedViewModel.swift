@@ -11,8 +11,7 @@ import CoreLocation
 class HomeFeedViewModel: ObservableObject {
     
     var festivals: [Festival] {
-        let festival: Festival = Festival.example
-        return [festival, festival, festival, festival, festival, festival, festival, festival, festival, festival, festival, festival, festival]
+        return FestivalExamples.all
     }
     
 }

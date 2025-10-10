@@ -96,7 +96,7 @@ struct DrinkThumbnailView: View {
 
 #Preview {
     if #available(iOS 26.0, *) {
-        FestivalDrinksView(festival: Festival.example, sortBy: .alphabetical).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        FestivalDrinksView(festival: FestivalExamples.primary, sortBy: .alphabetical).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

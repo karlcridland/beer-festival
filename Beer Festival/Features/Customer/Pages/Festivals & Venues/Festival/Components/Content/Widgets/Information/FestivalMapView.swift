@@ -13,14 +13,16 @@ struct FestivalMapView: View {
     private let coordinates: CLLocationCoordinate2D
     private let location: String
     private let size, cornerRadius: CGFloat
+    private let textColor: Color
     
     @State private var position: MapCameraPosition
     
-    init(location: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat) {
+    init(location: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat, textColor: Color) {
         self.location = location
         self.coordinates = coordinates
         self.size = size
         self.cornerRadius = cornerRadius
+        self.textColor = textColor
         
         _position = State(initialValue: .region(
             MKCoordinateRegion(
@@ -38,6 +40,7 @@ struct FestivalMapView: View {
                 .frame(height: size)
                 .cornerRadius(cornerRadius)
             Text(location)
+                .foregroundStyle(textColor)
                 .font(.caption.weight(.semibold))
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)

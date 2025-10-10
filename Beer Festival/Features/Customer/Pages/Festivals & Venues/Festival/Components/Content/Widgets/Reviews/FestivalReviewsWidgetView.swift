@@ -18,10 +18,11 @@ struct FestivalReviewsWidgetView: View {
     }
     
     var body: some View {
-        FestivalWidgetView(title: "Reviews", content: {
+        FestivalWidgetView(title: "Reviews", textColor: festival.venue.colorScheme.primaryText, content: {
             AnyView(
                 VStack(alignment: .center) {
                     Text("No reviews yet. Be the first!")
+                        .foregroundStyle(festival.venue.colorScheme.primaryText)
                         .font(.body.weight(.semibold))
                         .padding()
                 }
@@ -36,6 +37,7 @@ struct FestivalReviewsWidgetView: View {
                         Text("review")
                         Image(systemName: "plus")
                     }
+                    .foregroundStyle(festival.venue.colorScheme.accentText)
                     .font(.body.weight(.semibold))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
@@ -56,7 +58,7 @@ struct FestivalReviewsWidgetView: View {
 #Preview {
     if #available(iOS 26.0, *) {
         NavigationStack {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .toolbarTitleDisplayMode(.inline)
         }
     }

@@ -23,15 +23,16 @@ struct FestivalInformationWidgetView: View {
     }
     
     var body: some View {
-        FestivalWidgetView {
+        let primaryText: Color = festival.venue.colorScheme.primaryText
+        FestivalWidgetView(textColor: primaryText) {
             HStack(spacing: 12) {
-                FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius)
+                FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius, textColor: primaryText)
                 
                 VStack(alignment: .center, spacing: 8) {
                     Button {
                         fullScreen = true
                     } label: {
-                        QRCodeView(value: qr_code, size: height, tint: .white)
+                        QRCodeView(value: qr_code, size: height, tint: festival.venue.colorScheme.accentText)
                             .padding(padding)
                             .background(festival.venue.colorScheme.buttonAccent)
                             .cornerRadius(cornerRadius)
@@ -40,6 +41,7 @@ struct FestivalInformationWidgetView: View {
                     .buttonStyle(.borderless)
                     
                     Text("Scan to redeem your tokens")
+                        .foregroundStyle(primaryText)
                         .frame(maxWidth: height + (2 * padding))
                         .font(.caption.weight(.semibold))
                         .multilineTextAlignment(.center)
@@ -61,8 +63,8 @@ struct FestivalInformationWidgetView: View {
 #Preview {
     if #available(iOS 26.0, *) {
         NavigationStack {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
         }
     }
 }
-

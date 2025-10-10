@@ -29,15 +29,11 @@ struct FestivalContentView: View {
     
 }
 
-
 #Preview {
-    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationStack {
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
         }
     }
 }

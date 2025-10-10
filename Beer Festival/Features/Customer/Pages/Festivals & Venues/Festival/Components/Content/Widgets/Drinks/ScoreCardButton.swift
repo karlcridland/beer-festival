@@ -10,7 +10,7 @@ import SwiftUI
 struct ScoreCardButton: View {
     
     let drinkCount: Int
-    let tint: Color
+    let tint, textColor: Color
     let size: CGFloat = 60
     let onClick: () -> Void
     
@@ -19,11 +19,12 @@ struct ScoreCardButton: View {
             Button {
                 onClick()
             } label: {
-                CircularProgressGapView(progress: 0.2, trackColor: tint.opacity(0.2), progressColor: tint)
+                CircularProgressGapView(progress: 0.2, trackColor: tint.opacity(0.2), progressColor: tint, iconColor: textColor)
                     .frame(width: size, height: size)
             }
             .buttonStyle(.borderless)
             Text("Score Card")
+                .foregroundStyle(textColor)
                 .font(.caption.weight(.semibold))
         }
     }
@@ -66,14 +67,15 @@ struct CircularProgressGapView<GapContent: View>: View {
     var lineWidth: CGFloat
     var trackColor: Color = .gray.opacity(0.25)
     var progressColor: Color = .accentColor
+    var iconColor: Color
     @ViewBuilder var gapContent: () -> GapContent
 
-    init(
-        progress: Double,
+    init(progress: Double,
         gapDegrees: Double = 90,
         lineWidth: CGFloat = 8,
         trackColor: Color = .accentColor.opacity(0.2),
         progressColor: Color = .accentColor,
+        iconColor: Color,
         @ViewBuilder gapContent: @escaping () -> GapContent = { EmptyView() }
     ) {
         self.progress = progress
@@ -82,6 +84,7 @@ struct CircularProgressGapView<GapContent: View>: View {
         self.trackColor = trackColor
         self.progressColor = progressColor
         self.gapContent = gapContent
+        self.iconColor = iconColor
     }
 
     var body: some View {
@@ -97,20 +100,17 @@ struct CircularProgressGapView<GapContent: View>: View {
         .aspectRatio(1, contentMode: .fit)
         .overlay(alignment: .center) {
             Image(systemName: "circle.grid.2x2.topleft.checkmark.filled")
+                .foregroundStyle(iconColor)
                 .font(.title.weight(.semibold))
         }
     }
 }
 
-
 #Preview {
-    let showHome: Bool = !true
     if #available(iOS 26.0, *) {
-        if (showHome) {
-            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-        else {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationStack {
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
         }
     }
 }

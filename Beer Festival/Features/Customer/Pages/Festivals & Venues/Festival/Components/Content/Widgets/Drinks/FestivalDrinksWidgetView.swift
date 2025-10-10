@@ -19,25 +19,27 @@ struct FestivalDrinksWidgetView: View {
     }
     
     var body: some View {
+        let primary: Color = festival.venue.colorScheme.primaryText
+        let accent: Color = festival.venue.colorScheme.accentText
         let backgroundColor: Color = festival.venue.colorScheme.buttonAccent
-        FestivalWidgetView(title: "Drinks") {
+        FestivalWidgetView(title: "Drinks", textColor: festival.venue.colorScheme.primaryText) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    ScoreCardButton(drinkCount: 0, tint: backgroundColor) {
+                    ScoreCardButton(drinkCount: 0, tint: backgroundColor, textColor: primary) {
                         showScoreCard = true
                     }
                         .padding(.trailing, 12)
                     
-                    DrinkIconView(drink: DrinkExamples.ghostShip, label: "Popular") {
+                    DrinkIconView(drink: DrinkExamples.ghostShip, label: "Popular", tint: accent, textColor: primary) {
                         sortDrinksBy = .popularity
                     }
-                    DrinkIconView(drink: DrinkExamples.dryHopped, label: "Best Score") {
+                    DrinkIconView(drink: DrinkExamples.dryHopped, label: "Best Score", tint: accent, textColor: primary) {
                         sortDrinksBy = .bestScore
                     }
-                    DrinkIconView(drink: DrinkExamples.easeUpIPA, label: "Your Fav") {
+                    DrinkIconView(drink: DrinkExamples.easeUpIPA, label: "Favourite", tint: accent, textColor: primary) {
                         sortDrinksBy = .favourite
                     }
-                    DrinkIconView(label: "View All", systemName: "checklist.unchecked", background: backgroundColor) {
+                    DrinkIconView(label: "View All", systemName: "checklist.unchecked", tint: accent, textColor: primary, background: backgroundColor) {
                         sortDrinksBy = .alphabetical
                     }
                 }
@@ -61,7 +63,7 @@ struct FestivalDrinksWidgetView: View {
 #Preview {
     if #available(iOS 26.0, *) {
         NavigationStack {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .toolbarTitleDisplayMode(.inline)
         }
     }

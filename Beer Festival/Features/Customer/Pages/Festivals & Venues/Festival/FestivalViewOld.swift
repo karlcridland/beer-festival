@@ -40,6 +40,9 @@ struct FestivalViewOld: View {
 
 #Preview {
     if #available(iOS 26.0, *) {
-        FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationStack {
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
+        }
     }
 }

@@ -43,7 +43,7 @@ struct FestivalUserQRCodeView: View {
 #Preview {
     if #available(iOS 26.0, *) {
         NavigationStack {
-            FestivalView(festival: Festival.example).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }
