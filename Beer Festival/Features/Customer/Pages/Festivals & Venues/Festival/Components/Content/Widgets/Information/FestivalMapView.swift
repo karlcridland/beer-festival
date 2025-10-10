@@ -11,14 +11,15 @@ import MapKit
 struct FestivalMapView: View {
     
     private let coordinates: CLLocationCoordinate2D
-    private let location: String
+    private let location, venueName: String
     private let size, cornerRadius: CGFloat
     private let textColor: Color
     
     @State private var position: MapCameraPosition
     
-    init(location: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat, textColor: Color) {
+    init(location: String, venueName: String, coordinates: CLLocationCoordinate2D, size: CGFloat, cornerRadius: CGFloat, textColor: Color) {
         self.location = location
+        self.venueName = venueName
         self.coordinates = coordinates
         self.size = size
         self.cornerRadius = cornerRadius
@@ -34,11 +35,17 @@ struct FestivalMapView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Map(position: $position)
-                .mapStyle(.standard)
-                .ignoresSafeArea()
-                .frame(height: size)
-                .cornerRadius(cornerRadius)
+            Button {
+                openExternalMap()
+            } label: {
+                Map(position: $position)
+                    .mapStyle(.standard)
+                    .disabled(true)
+                    .ignoresSafeArea()
+                    .frame(height: size)
+                    .cornerRadius(cornerRadius)
+            }
+            .buttonStyle(.borderless)
             Text(location)
                 .foregroundStyle(textColor)
                 .font(.caption.weight(.semibold))
@@ -47,4 +54,23 @@ struct FestivalMapView: View {
                 .padding(.horizontal, 10)
         }
     }
+    
+    func openExternalMap() {
+        let address: String = [venueName, location].joined(separator: " ")
+        if let encoded = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: "http://maps.apple.com/?address=\(encoded)") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
 }
+
+#Preview {
+    if #available(iOS 26.0, *) {
+        NavigationStack {
+            FestivalView(festival: FestivalExamples.primary).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .toolbarTitleDisplayMode(.inline)
+        }
+    }
+}
+

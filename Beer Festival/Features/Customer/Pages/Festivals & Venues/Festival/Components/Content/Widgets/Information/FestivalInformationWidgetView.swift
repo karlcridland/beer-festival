@@ -26,7 +26,7 @@ struct FestivalInformationWidgetView: View {
         let primaryText: Color = festival.venue.colorScheme.primaryText
         FestivalWidgetView(textColor: primaryText) {
             HStack(spacing: 12) {
-                FestivalMapView(location: self.festival.venue.toString, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius, textColor: primaryText)
+                FestivalMapView(location: self.festival.venue.toString, venueName: festival.venue.name, coordinates: festival.coordinate, size: height + (2 * padding), cornerRadius: cornerRadius, textColor: primaryText)
                 
                 VStack(alignment: .center, spacing: 8) {
                     Button {
