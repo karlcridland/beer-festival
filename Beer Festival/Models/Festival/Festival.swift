@@ -21,7 +21,7 @@ class Festival: FestivalProtocol, Hashable {
     
     let dates: [FestivalDate]
     
-    var recentReviews: [Review] = []
+    var recentReviews: [FestivalReview] = []
     
     init(id: String, name: String, venue: Venue, coordinate: CLLocationCoordinate2D, dates: [FestivalDate], tokens: Tokens? = nil, pricing: FestivalPricing, attendance: FestivalAttendance = .notAttending, inventory: Inventory? = nil) {
         self.id = id

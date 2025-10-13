@@ -14,13 +14,15 @@ struct Drink: Identifiable {
     let brewery: Brewery
     let type: DrinkType
     let percentage: Double?
+    let description: String?
     
-    init(id: String = UUID().uuidString, name: String, brewery: Brewery, type: DrinkType, percentage: Double? = nil) {
+    init(id: String = UUID().uuidString, name: String, brewery: Brewery, type: DrinkType, percentage: Double? = nil, description: String? = nil) {
         self.id = id
         self.name = name
         self.brewery = brewery
         self.type = type
         self.percentage = percentage
+        self.description = description
     }
     
     var isAlcoholic: Bool {

@@ -49,7 +49,7 @@ struct FestivalReviewsWidgetView: View {
             )
         })
         .popover(isPresented: $showNewReview) {
-            FestivalEditReview()
+            FestivalEditReview(festival: festival)
         }
     }
     

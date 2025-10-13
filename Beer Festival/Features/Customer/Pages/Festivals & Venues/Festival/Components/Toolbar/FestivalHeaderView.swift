@@ -15,10 +15,10 @@ struct FestivalHeaderView: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(title)
-                .font(.title3)
+                .font(.body)
                 .bold()
             Text(subtitle)
-                .font(.subheadline)
+                .font(.caption)
                 .opacity(0.75)
         }
         .foregroundStyle(textColor)

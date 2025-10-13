@@ -57,6 +57,6 @@ class FestivalExamples {
 }
 
 class ReviewExamples {
-    static let a = Review(date: Date(), name: "John Smith", message: "Best festival ever", rating: 5)
-    static let b = Review(date: Date(), name: "Kevin Applewood", message: "Worst festival ever", rating: 1)
+    static let a = FestivalReview(date: Date(), name: "John Smith", message: "Best festival ever", rating: 5)
+    static let b = FestivalReview(date: Date(), name: "Kevin Applewood", message: "Worst festival ever", rating: 1)
 }

@@ -24,7 +24,7 @@ struct FestivalDrinksView: View {
             Color(viewModel.festival.venue.colorScheme.primary).ignoresSafeArea()
             List {
                 ForEach(viewModel.drinks) { drink in
-                    DrinkThumbnailView(drink: drink, textColor: viewModel.festival.venue.colorScheme.accentText, backgroundColor: viewModel.festival.venue.colorScheme.accent)
+                    DrinkThumbnailView(drink: drink, colorScheme: viewModel.festival.venue.colorScheme)
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
@@ -57,17 +57,18 @@ struct FestivalDrinksView: View {
     
 }
 
-
-#Preview {
-    if #available(iOS 26.0, *) {
-        FestivalDrinksView(festival: FestivalExamples.primary, sortBy: .alphabetical).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
-
 extension Double {
     
     var oneDP: String {
         String(format: "%.1f", self)
     }
     
+}
+
+#Preview {
+    if #available(iOS 26.0, *) {
+        NavigationStack {
+            FestivalDrinksView(festival: FestivalExamples.primary, sortBy: .alphabetical).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
+    }
 }
