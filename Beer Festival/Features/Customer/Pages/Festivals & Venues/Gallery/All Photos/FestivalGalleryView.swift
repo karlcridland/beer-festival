@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct FestivalGalleryView: View {
+    
+    @ObservedObject var viewModel: FestivalGalleryViewModel
+    
+    init(festival: Festival) {
+        _viewModel = ObservedObject(initialValue: FestivalGalleryViewModel(festival: festival))
+    }
+    
     var body: some View {
         Text("Gallery")
     }
